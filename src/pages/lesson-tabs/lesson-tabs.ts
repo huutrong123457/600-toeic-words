@@ -4,7 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { GamesList } from '../games-list/games-list';
 import { WordsList } from '../words-list/words-list';
 import { PracticeParts } from '../practice-parts/pratice-parts';
-
+import { Lesson } from '../../models/lesson';
 @Component({
   templateUrl: 'lesson-tabs.html',
 })
@@ -14,7 +14,7 @@ export class LessonTabs {
   tabPractices:any= PracticeParts;
   tabGames:any= GamesList;
 
-  selectedLesson: any;
+  selectedLesson: Lesson;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
 

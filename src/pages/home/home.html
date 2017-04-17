@@ -5,6 +5,9 @@
 </ion-header>
 
 <ion-content padding>
-    <h3>Ionic Menu Starter</h3>
-    <button (click)="goToLesson()">Go to lesson-tabs</button>
+    <h5>Choose your lesson</h5>
+    <ion-list>
+        <ion-item (click)="goToLessonTabs(lesson)" *ngFor="let lesson of lessons">{{lesson.lesson}}</ion-item>
+    </ion-list>
+
 </ion-content>
