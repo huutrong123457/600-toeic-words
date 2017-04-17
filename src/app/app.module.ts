@@ -4,7 +4,14 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
+import { LessonTabs } from '../pages/lesson-tabs/lesson-tabs';
+import { WordsList } from '../pages/words-list/words-list';
+import { PracticeParts } from '../pages/practice-parts/pratice-parts';
+import { GamesList } from '../pages/games-list/games-list';
+
+import { WordsDetail } from '../pages/words-detail/words-detail';
+import { PracticePart1 } from '../pages/practice-part1/practice-part1';
+import { GameWordFill} from '../pages/game-word-fill/game-word-fill';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -13,7 +20,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    LessonTabs,
+    WordsList,
+    PracticeParts,
+    GamesList,
+    WordsDetail,
+    PracticePart1,
+    GameWordFill
   ],
   imports: [
     BrowserModule,
@@ -23,7 +36,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage
+    LessonTabs,
+    WordsList,
+    PracticeParts,
+    GamesList,
+    WordsDetail,
+    PracticePart1,
+    GameWordFill
   ],
   providers: [
     StatusBar,

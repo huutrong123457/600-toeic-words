@@ -1,0 +1,12 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Lesson: {{selectedLesson.greeting}}</ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-tabs>
+    <ion-tab [root]="tabWordsList" [rootParams]="selectedLesson" tabTitle="Words" tabIcon="ion-clipboard"></ion-tab>
+    <ion-tab [root]="tabPractices" [rootParams]="selectedLesson" tabTitle="Practices" tabIcon="ion-compose"></ion-tab>
+    <ion-tab [root]="tabGames" [rootParams]="selectedLesson" tabTitle="Games" tabIcon="ion-ios-game-controller-b"></ion-tab>
+</ion-tabs>
+
+//

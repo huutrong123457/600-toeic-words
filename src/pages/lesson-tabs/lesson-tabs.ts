@@ -1,0 +1,29 @@
+import { Component } from '@angular/core';
+import { NavController, NavParams } from 'ionic-angular';
+
+import { GamesList } from '../games-list/games-list';
+import { WordsList } from '../words-list/words-list';
+import { PracticeParts } from '../practice-parts/pratice-parts';
+
+@Component({
+  templateUrl: 'lesson-tabs.html',
+})
+export class LessonTabs {
+
+  tabWordsList: WordsList;
+  tabPractices: PracticeParts;
+  tabGames: GamesList;
+
+  selectedLesson: any;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+    this.selectedLesson = navParams.data;
+    console.log(navParams.data);
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad LessonTabs');
+  }
+
+}
