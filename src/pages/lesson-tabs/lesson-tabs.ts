@@ -10,9 +10,9 @@ import { PracticeParts } from '../practice-parts/pratice-parts';
 })
 export class LessonTabs {
 
-  tabWordsList: WordsList;
-  tabPractices: PracticeParts;
-  tabGames: GamesList;
+  tabWordsList:any= WordsList;
+  tabPractices:any= PracticeParts;
+  tabGames:any= GamesList;
 
   selectedLesson: any;
 
