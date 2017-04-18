@@ -11,8 +11,6 @@
     <ion-list>
         <ion-item (click)="goToWordsDetail(word)" *ngFor="let word of words">
             {{word.word}}
-            <ion-card *ngIf="word.examples[0]">{{word.examples[0].sentence}}</ion-card>
-            <ion-card *ngIf="word.families[0]">{{word.families[0].word}}</ion-card>
         </ion-item>
     </ion-list>
 

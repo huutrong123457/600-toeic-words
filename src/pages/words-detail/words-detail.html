@@ -1,18 +1,26 @@
-<!--
-  Generated template for the WordsDetail page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>words-detail</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>words-detail</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
+    <h3>{{selectedWord.word}} {{selectedWord.wordID}}</h3>
+    <ion-card>
+        <ion-card-header>Meaning</ion-card-header>
+        <ion-item>{{selectedWord.meaning}}</ion-item>
+    </ion-card>
+    <ion-card>
+        <ion-card-header>Examples</ion-card-header>
+        <ion-item *ngFor="let example of selectedWord.examples">{{example.sentence}}</ion-item>
+    </ion-card>
+    <ion-card *ngIf="selectedWord.families[0]">
+        <ion-card-header>Words Families</ion-card-header>
+        <ion-item *ngFor="let word of selectedWord.families">{{word.word}}</ion-item>
+    </ion-card>
+    <button (click)="getWordData(selectedWord.wordID-1)">Go to previous word</button>
+    <button (click)="getWordData(selectedWord.wordID+1)">Go to next word</button>
 
 </ion-content>
