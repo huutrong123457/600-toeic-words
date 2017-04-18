@@ -23,14 +23,14 @@ export class HomePage {
        // create object sqlite
     this.database = new SQLite();
 
-    // when platform ready-> open DB and load data from sounds table in db
+    // when platform ready-> open DB and load data from lessons table in db
     platform.ready().then(() => {
       this.database.openDatabase({
         name: 'toeic-voca.db',
         location: 'default',
         createFromLocation: 1
       }).then((successed) => {
-        this.loadData()  // load data when open database succefully
+        this.loadLessonsData()  // load data when open database succefully
       }, (err) => {
         console.log("Error opening database: " + err);
         alert("Error opening database: " + err);
@@ -39,7 +39,7 @@ export class HomePage {
     );
   }
 
-  loadData() {
+  loadLessonsData() {
         // check if array lesson is empty
     if (!this.lessons) {
       // using loading controller to create loading icon while loading data
@@ -60,6 +60,9 @@ export class HomePage {
             });
           }
           loading.dismiss(); // disappear icon loading when done
+        }
+        else { // when data is empty
+            loading.dismiss(); // disappear icon loading when done
         }
       }, (error) => {
         console.log("ERROR: " + JSON.stringify(error));
