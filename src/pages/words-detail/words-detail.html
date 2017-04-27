@@ -1,24 +1,35 @@
 <ion-header>
-
-    <ion-navbar>
-        <ion-title>words-detail</ion-title>
+    <ion-navbar color="primary">
+        <ion-title>Flash card (1/12) </ion-title>
     </ion-navbar>
-
 </ion-header>
-
-<ion-content padding>
-    <h3>{{selectedWord.word}} {{selectedWord.wordID}}</h3>
+<ion-content>
     <ion-card>
-        <ion-card-header>Meaning</ion-card-header>
-        <ion-item>{{selectedWord.meaning}}</ion-item>
-    </ion-card>
-    <ion-card>
-        <ion-card-header>Examples</ion-card-header>
-        <ion-item *ngFor="let example of selectedWord.examples">{{example.sentence}}</ion-item>
-    </ion-card>
-    <ion-card *ngIf="selectedWord.families[0]">
-        <ion-card-header>Words Families</ion-card-header>
-        <ion-item *ngFor="let word of selectedWord.families">{{word.word}}</ion-item>
+        <div class="word">
+            <span>{{selectedWord.word}} ({{selectedWord.type}})</span>
+            <button color="danger" ion-button large clear icon-only>
+                <ion-icon name="volume-up"></ion-icon>              
+            </button>
+        </div>
+        <div class="row">
+            <img class="mean-img" src="https://placeimg.com/100/100/any" />
+        </div>
+        <div class="row">
+            <p class="phienam">{{selectedWord.phienAm}}</p>
+        </div>
+        <div class="row">
+            <p class="mean-text">{{selectedWord.meaning}}</p>
+        </div>
+        <div class="row example">
+            <p>Examples:</p>
+            <p *ngFor="let example of selectedWord.examples" text-justify>&#45; {{example.sentence}}</p>
+        </div>
+        <div class="row families" *ngIf="selectedWord.families[0]">
+            <p class="header">Words Families:</p>
+        </div>
+        <div class="row families" *ngFor="let word of selectedWord.families">
+            <p>&#45; {{word.word}} ({{word.type}})</p>
+        </div>
     </ion-card>
     <button (click)="getWordData(selectedWord.wordID-1)">Go to previous word</button>
     <button (click)="getWordData(selectedWord.wordID+1)">Go to next word</button>
