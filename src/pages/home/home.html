@@ -1,13 +1,26 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>Lessons</ion-title>
+    <ion-navbar color="primary">
+        <ion-buttons left>
+            <button ion-button icon-only>
+                <ion-icon name="book"></ion-icon>
+            </button>
+        </ion-buttons>
+        <ion-title>600 essential toeic words</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="openModal()">
+                <ion-icon name="more"></ion-icon>
+            </button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <h5>Choose your lesson</h5>
-    <ion-list>
-        <ion-item (click)="goToLessonTabs(lesson)" *ngFor="let lesson of lessons">{{lesson.lesson}}</ion-item>
-    </ion-list>
+<ion-content>
+    <div (click)="goToLessonTabs(lesson)" *ngFor="let lesson of lessons" class="card-background-page">
+        <ion-card>
+            <img src="https://placeimg.com/400/300/any" />
+            <div class="card-title">{{lesson.lesson}}</div>
+            <div class="card-subtitle">0/12 words</div>
+        </ion-card>
+    </div>
 
 </ion-content>

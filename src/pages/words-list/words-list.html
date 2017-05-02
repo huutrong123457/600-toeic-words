@@ -1,16 +1,16 @@
 <ion-header>
-
     <ion-navbar>
     </ion-navbar>
-
 </ion-header>
-
-
-<ion-content padding>
-    <h5>Choose your word</h5>
+<ion-content>
     <ion-list>
         <ion-item (click)="goToWordsDetail(word)" *ngFor="let word of words">
-            {{word.word}}
+            <ion-thumbnail item-left>
+                <img src="https://placeimg.com/100/100/any">
+            </ion-thumbnail>
+            <h2>{{word.word}} ({{word.type}})</h2>
+            <h3>{{word.phienAm}}</h3>
+            <p>{{word.meaning}}</p>
         </ion-item>
     </ion-list>
 

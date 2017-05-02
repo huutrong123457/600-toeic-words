@@ -1,3 +1,45 @@
 page-words-detail {
-
+    .word {
+        font-size: 2em;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .mean-img {
+        width: 100%;
+        min-height: 200px;
+        max-height: 200px;
+    }
+    .row {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .phienam {
+        margin-top: 10px;
+        font-size: 1.25em;
+        font-weight: bold;
+        color: rebeccapurple;
+    }
+    .mean-text {
+        font-size: 1.4em;
+        font-style: italic;
+        font-weight: bold;
+    }
+    .example p {
+        font-size: 1.1em;
+    }
+    .example p:first-child {
+        color: #005D53;
+        font-size: 1.25em;
+        font-weight: bold;
+    }
+    .families p {
+        font-size: 1.25em;
+        font-weight: bold;
+    }
+    .header {
+        color: #005D53;
+    }
 }
