@@ -17,7 +17,7 @@
 <ion-content>
     <div (click)="goToLessonTabs(lesson)" *ngFor="let lesson of lessons" class="card-background-page">
         <ion-card>
-            <img src="https://placeimg.com/400/300/any" />
+            <img src="{{lesson.linkImg}}" />
             <div class="card-title">{{lesson.lesson}}</div>
             <div class="card-subtitle">0/12 words</div>
         </ion-card>

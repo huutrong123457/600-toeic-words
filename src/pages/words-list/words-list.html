@@ -6,7 +6,7 @@
     <ion-list>
         <ion-item (click)="goToWordsDetail(word)" *ngFor="let word of words">
             <ion-thumbnail item-left>
-                <img src="https://placeimg.com/100/100/any">
+                <img src="{{word.linkImg}}">
             </ion-thumbnail>
             <h2>{{word.word}} ({{word.type}})</h2>
             <h3>{{word.phienAm}}</h3>

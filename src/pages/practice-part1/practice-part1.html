@@ -1,16 +1,14 @@
 <ion-header>
-
     <ion-navbar>
         <ion-title>practice-part1</ion-title>
     </ion-navbar>
-
 </ion-header>
 
 <ion-content padding>
     {{selectedLesson.lessonID}}
     <p>Look at the picture and listen to sentences. Choose the sentence that best describes the picture.</p>
     <ion-card>
-        <img src="https://placeimg.com/400/300/any" />
+        <img src="{{urlImg}}" />
         <ion-item>A. {{A}}</ion-item>
         <ion-item>B. {{B}}</ion-item>
         <ion-item>C. {{C}}</ion-item>

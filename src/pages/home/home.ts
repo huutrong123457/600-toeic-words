@@ -56,7 +56,7 @@ export class HomePage {
             this.lessons.push({
               lessonID: data.rows.item(i).ID,
               lesson: data.rows.item(i).Lesson,
-              linkImg: data.rows.item(i).linkImgage,
+              linkImg: data.rows.item(i).linkImage,
             });
           }
           loading.dismiss(); // disappear icon loading when done
