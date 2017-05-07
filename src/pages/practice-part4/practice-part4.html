@@ -9,4 +9,11 @@
 
 <ion-content padding>
     {{selectedLesson.lessonID}}
+    <ion-card *ngFor="let question of part4QuestionsArray">
+        <ion-item>{{question.Question}}</ion-item>
+        <ion-item>A. {{question.A}}</ion-item>
+        <ion-item>B. {{question.B}}</ion-item>
+        <ion-item>C. {{question.C}}</ion-item>
+        <ion-item>C. {{question.D}}</ion-item>
+    </ion-card>
 </ion-content>

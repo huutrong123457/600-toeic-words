@@ -37,7 +37,7 @@ export class PracticePart2 {
       });
     }
     );
-  }
+  } // end constructor
 
   loadPart2Data(lessonSelectedID) {
  // check if array lesson is empty
