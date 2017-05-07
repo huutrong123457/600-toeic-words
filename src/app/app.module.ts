@@ -14,6 +14,9 @@ import { PracticePart1 } from '../pages/practice-part1/practice-part1';
 import { PracticePart2 } from '../pages/practice-part2/practice-part2';
 import { PracticePart3 } from '../pages/practice-part3/practice-part3';
 import { PracticePart4 } from '../pages/practice-part4/practice-part4';
+import { PracticePart5 } from '../pages/practice-part5/practice-part5';
+import { PracticePart6 } from '../pages/practice-part6/practice-part6';
+import { PracticePart7 } from '../pages/practice-part7/practice-part7';
 import { GameWordFill} from '../pages/game-word-fill/game-word-fill';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -32,6 +35,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PracticePart2,
     PracticePart3,
     PracticePart4,
+    PracticePart5,
+    PracticePart6,
+    PracticePart7,
     GameWordFill
   ],
   imports: [
@@ -51,6 +57,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     PracticePart2,
     PracticePart3,
     PracticePart4,
+    PracticePart5,
+    PracticePart6,
+    PracticePart7,
     GameWordFill
   ],
   providers: [
