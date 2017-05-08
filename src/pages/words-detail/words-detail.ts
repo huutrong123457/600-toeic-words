@@ -3,6 +3,7 @@ import { NavController, NavParams, LoadingController, Platform, Slides } from 'i
 
 import { Word } from '../../models/word';
 import { SQLite } from 'ionic-native';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 @Component({
   selector: 'page-words-detail',
@@ -17,11 +18,12 @@ export class WordsDetail {
   startIndex: number = -1;
   index: number = -1;
   length: number = 0;
+  lstKey: string[] = [];
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
-    public platform: Platform) {
+    public platform: Platform, public nativeAudio: NativeAudio) {
     // get selectedWord
     this.selectedWord = navParams.data;
     //
@@ -43,8 +45,7 @@ export class WordsDetail {
   } // end constructor
 
   ionViewDidLoad() {
-    this.slides.update();
-    setTimeout(() => this.slides.slideTo(this.index), 200);
+
   }
 
   next() {
@@ -53,17 +54,32 @@ export class WordsDetail {
       return;
     }
     this.index++;
+    this.play(this.lstKey[this.index]);
   }
 
   pre() {
+    console.log(this.lstKey);
     if (this.index == 0) {
       return;
     }
     this.index--;
+    this.play(this.lstKey[this.index]);
   }
 
   playAudio(word) {
-    alert(word.word);
+    this.play(word.word);
+  }
+
+  //play sound
+  play(id: string) {
+    this.nativeAudio.play(id)
+      .then(() => { console.log('success') }, (error) => { console.log(error) });
+  }
+
+  //get sound in temp memory
+  prepareAudio(id: string, asset: string) {
+    this.nativeAudio.preloadComplex(id, asset, 1, 1, 0)
+      .then(() => { }, (error) => { console.log(error) });
   }
 
   //////////// method LOAD List words  ////////////////
@@ -102,6 +118,8 @@ export class WordsDetail {
               examples: [],
               families: []
             }
+            this.lstKey.push(wordTemp.word);
+            this.prepareAudio(wordTemp.word, 'assets/audio/words/' + wordTemp.linkAudio + '.mp3');
             this.getWordExamplesData(wordTemp);
             this.getWordsFamiliesData(wordTemp);
             // Push word completed to array words
@@ -109,6 +127,11 @@ export class WordsDetail {
           } // end for loop get words
 
           loading.dismiss(); // disappear icon loading when done
+          this.slides.update();
+          setTimeout(() => {
+            this.slides.slideTo(this.index);
+            this.play(this.lstKey[this.index]);
+          }, 200);
         }
         else { // when data is empty
           loading.dismiss(); // disappear icon loading when done

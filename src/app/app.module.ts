@@ -21,6 +21,7 @@ import { GameWordFill} from '../pages/game-word-fill/game-word-fill';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import{ NativeAudio } from '@ionic-native/native-audio';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    NativeAudio,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
