@@ -4,34 +4,35 @@
     </ion-navbar>
 </ion-header>
 <ion-content>
-    <ion-card>
-        <div class="word">
-            <span>{{selectedWord.word}} ({{selectedWord.type}})</span>
-            <button color="danger" ion-button large clear icon-only>
+    <ion-slides>
+        <ion-slide *ngFor="let word of listWords">
+            <ion-card>
+                <div class="word">
+                    <span>{{word.word}} ({{word.type}})</span>
+                    <button color="danger" ion-button large clear icon-only>
                 <ion-icon name="volume-up"></ion-icon>              
             </button>
-        </div>
-        <div class="row">
-            <img class="mean-img" src="{{selectedWord.linkImg}}" />
-        </div>
-        <div class="row">
-            <p class="phienam">{{selectedWord.phienAm}}</p>
-        </div>
-        <div class="row">
-            <p class="mean-text">{{selectedWord.meaning}}</p>
-        </div>
-        <div class="row example">
-            <p>Examples:</p>
-            <p *ngFor="let example of selectedWord.examples" text-justify>&#45; {{example.sentence}}</p>
-        </div>
-        <div class="row families" *ngIf="selectedWord.families[0]">
-            <p class="header">Words Families:</p>
-        </div>
-        <div class="row families" *ngFor="let word of selectedWord.families">
-            <p>&#45; {{word.word}} ({{word.type}})</p>
-        </div>
-    </ion-card>
-    <button (click)="getWordData(selectedWord.wordID-1)">Go to previous word</button>
-    <button (click)="getWordData(selectedWord.wordID+1)">Go to next word</button>
-
+                </div>
+                <div class="row">
+                    <img class="mean-img" src="{{word.linkImg}}" />
+                </div>
+                <div class="row">
+                    <p class="phienam">{{word.phienAm}}</p>
+                </div>
+                <div class="row">
+                    <p class="mean-text">{{word.meaning}}</p>
+                </div>
+                <div class="row example">
+                    <p>Examples:</p>
+                    <p *ngFor="let example of word.examples" text-justify>&#45; {{example.sentence}}</p>
+                </div>
+                <div class="row families" *ngIf="word.families[0]">
+                    <p class="header">Words Families:</p>
+                </div>
+                <div class="row families" *ngFor="let word of word.families">
+                    <p>&#45; {{word.word}} ({{word.type}})</p>
+                </div>
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
 </ion-content>

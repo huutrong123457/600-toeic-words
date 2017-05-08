@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, LoadingController, Platform, Slides } from 'ionic-angular';
 
 import { Word } from '../../models/word';
 import { SQLite } from 'ionic-native';
@@ -9,24 +9,20 @@ import { SQLite } from 'ionic-native';
   templateUrl: 'words-detail.html',
 })
 export class WordsDetail {
+   @ViewChild(Slides) slides: Slides;
 
   selectedWord: Word;
+  listWords: Array<Word>;
   public database: SQLite;
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public platform: Platform) {
     // get selectedWord
     this.selectedWord = navParams.data;
-
     //
     this.database = new SQLite();
-    // using loading controller to create loading icon while loading data
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    // display loading icon
-    loading.present();
     // when platform ready-> open DB and load data from words table in db 
     platform.ready().then(() => {
       this.database.openDatabase({
@@ -34,14 +30,10 @@ export class WordsDetail {
         location: 'default',
         createFromLocation: 1
       }).then((successed) => {
-        this.getWordExamplesData(this.selectedWord.wordID);  // load data when open database succefully
-        this.getWordsFamiliesData(this.selectedWord.wordID);
-
-        loading.dismiss();
+        this.loadListWords(this.selectedWord.lessonID);
       }, (err) => {
         console.log("Error opening database: " + err);
         alert("Error opening database: " + err);
-        loading.dismiss();
       });
     }
     );
@@ -51,64 +43,63 @@ export class WordsDetail {
     console.log('ionViewDidLoad WordsDetail');
   }
 
-  getWordData(wordID) {
-    // using loading controller to create loading icon while loading data
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    // display loading icon
-    loading.present();
-    this.platform.ready().then(() => {
-      this.database.openDatabase({
-        name: 'toeic-voca.db',
-        location: 'default',
-        createFromLocation: 1
-      }).then((successed) => {
-        // load data when open database succefully
-        this.database.executeSql("SELECT * FROM words WHERE WordID=" + wordID, []).then((wordsData) => {
-          if (wordsData.rows.length > 0) {
-            this.selectedWord = {
-              wordID: wordsData.rows.item(0).WordID,
-              word: wordsData.rows.item(0).Word,
-              type: wordsData.rows.item(0).Type,
-              lessonID: wordsData.rows.item(0).LessonID,
-              meaning: wordsData.rows.item(0).Meaning,
-              favorite: wordsData.rows.item(0).Favorite,
-              phienAm: wordsData.rows.item(0).PhienAm,
-              linkImg: wordsData.rows.item(0).linkImage,
-              linkAudio: wordsData.rows.item(0).linkAudio,
+  //////////// method LOAD List words  ////////////////
+  loadListWords(lessonSelectedID) {
+    // check if array lesson is empty
+    if (!this.listWords) {
+      // using loading controller to create loading icon while loading data
+      let loading = this.loadingCtrl.create({
+        content: 'Please wait...'
+      });
+      // display loading icon
+      loading.present();
+      // get data and push in to array this.lessons
+      this.database.executeSql("SELECT * FROM words WHERE LessonID=" + lessonSelectedID, []).then((wordsData) => {
+        this.listWords = [];
+        // alert("words total: " + wordsData.rows.length);
+        if (wordsData.rows.length > 0) {
+          for (var i = 0; i < wordsData.rows.length; i++) {
+            // temporary variable store one word
+            let wordTemp: Word = {
+              wordID: wordsData.rows.item(i).WordID,
+              word: wordsData.rows.item(i).Word,
+              type: wordsData.rows.item(i).Type,
+              lessonID: wordsData.rows.item(i).LessonID,
+              meaning: wordsData.rows.item(i).Meaning,
+              favorite: wordsData.rows.item(i).Favorite,
+              phienAm: wordsData.rows.item(i).PhienAm,
+              linkImg: wordsData.rows.item(i).linkImage,
+              linkAudio: wordsData.rows.item(i).linkAudio,
               examples: [],
               families: []
-            };
+            }
+            this.getWordExamplesData(wordTemp);
+            this.getWordsFamiliesData(wordTemp);
+            // Push word completed to array words
+            this.listWords.push(wordTemp);
+          } // end for loop get words
 
-            this.getWordExamplesData(this.selectedWord.wordID);
-            this.getWordsFamiliesData(this.selectedWord.wordID);
-            loading.dismiss();
-          }
-          else{ // word is empty
-             loading.dismiss();
-          }
-        }, (error) => {
-          loading.dismiss();
-          console.log("ERROR when get one word: " + JSON.stringify(error) + " wordID:" + wordID);
-          alert("error when get one word: " + error + " wordID:" + wordID); // disappear icon loading even if error
-        }); // end GET one word
-      }, (err) => {
-        loading.dismiss();
-        console.log("Error opening database: " + err);
-        alert("Error opening database: " + err);
+          loading.dismiss(); // disappear icon loading when done
+        }
+        else { // when data is empty
+          loading.dismiss(); // disappear icon loading when done
+        }
+      }, (error) => {
+        console.log("ERROR: " + JSON.stringify(error));
+        alert("error: " + error);
+        loading.dismiss(); // disappear icon loading even if error
       });
     }
-    );
-  }
-  // Function get examples of selectedWord
-  getWordExamplesData(wordID) {
+  } // end function getListWords
+ 
+  /////// Function get examples
+  getWordExamplesData(wordTemp) {
     // BLOCK of code query examples data and words families data 
     // GET examples for wordTemp
-    this.database.executeSql("SELECT * FROM examples WHERE WordID=" + wordID, []).then((examplesData) => {
+    this.database.executeSql("SELECT * FROM examples WHERE WordID=" + wordTemp.wordID, []).then((examplesData) => {
       if (examplesData.rows.length > 0) {
         for (var i = 0; i < examplesData.rows.length; i++) {
-          this.selectedWord.examples.push({
+          wordTemp.examples.push({
             wordID: examplesData.rows.item(i).ID,
             ID: examplesData.rows.item(i).ExampleID,
             sentence: examplesData.rows.item(i).Sentence
@@ -116,18 +107,18 @@ export class WordsDetail {
         }
       }
     }, (error) => {
-      console.log("ERROR when get examples: " + JSON.stringify(error) + " wordID:" + wordID);
-      alert("error when get examples: " + error + " wordID:" + wordID); // disappear icon loading even if error
-    }); // end GET examples
-    // END BLOCK 
-  }
-  // function get wordsFamilies of selected word
-  getWordsFamiliesData(wordID) {
+      console.log("ERROR when get examples: " + JSON.stringify(error) + " wordID:" + wordTemp.wordID);
+      alert("error when get examples: " + error + " wordID:" + wordTemp.wordID); // disappear icon loading even if error
+    }); 
+  } // end GET examples
+  
+  ////// function get wordsFamilies
+  getWordsFamiliesData(wordTemp) {
     // GET word families for wordTemp
-    this.database.executeSql("SELECT * FROM families WHERE WordID=" + wordID, []).then((familiesData) => {
+    this.database.executeSql("SELECT * FROM families WHERE WordID=" + wordTemp.wordID, []).then((familiesData) => {
       if (familiesData.rows.length > 0) {
         for (var i = 0; i < familiesData.rows.length; i++) {
-          this.selectedWord.families.push({
+          wordTemp.families.push({
             wordID: familiesData.rows.item(i).ID,
             ID: familiesData.rows.item(i).FamilyID,
             word: familiesData.rows.item(i).Word,
@@ -137,9 +128,8 @@ export class WordsDetail {
         }
       }
     }, (error) => {
-      console.log("ERROR when get words families: " + JSON.stringify(error) + " wordID:" + wordID);
-      alert("error when get words families: " + error + " wordID:" + wordID); // disappear icon loading even if error
-    }); // end GET word families 
-  }
-
+      console.log("ERROR when get words families: " + JSON.stringify(error) + " wordID:" + wordTemp.wordID);
+      alert("error when get words families: " + error + " wordID:" + wordTemp.wordID); // disappear icon loading even if error
+    }); 
+  } // end GET word families 
 }
