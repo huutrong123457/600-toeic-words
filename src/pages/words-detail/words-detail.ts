@@ -9,11 +9,14 @@ import { SQLite } from 'ionic-native';
   templateUrl: 'words-detail.html',
 })
 export class WordsDetail {
-   @ViewChild(Slides) slides: Slides;
+  @ViewChild(Slides) slides: Slides;
 
   selectedWord: Word;
   listWords: Array<Word>;
   public database: SQLite;
+  startIndex: number = -1;
+  index: number = -1;
+  length: number = 0;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -30,7 +33,7 @@ export class WordsDetail {
         location: 'default',
         createFromLocation: 1
       }).then((successed) => {
-        this.loadListWords(this.selectedWord.lessonID);
+        this.loadListWords(this.selectedWord);
       }, (err) => {
         console.log("Error opening database: " + err);
         alert("Error opening database: " + err);
@@ -40,11 +43,31 @@ export class WordsDetail {
   } // end constructor
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad WordsDetail');
+    this.slides.update();
+    setTimeout(() => this.slides.slideTo(this.index), 200);
+  }
+
+  next() {
+    if (this.startIndex == this.index || this.index == this.length - 1) {
+      this.startIndex = -1;
+      return;
+    }
+    this.index++;
+  }
+
+  pre() {
+    if (this.index == 0) {
+      return;
+    }
+    this.index--;
+  }
+
+  playAudio(word) {
+    alert(word.word);
   }
 
   //////////// method LOAD List words  ////////////////
-  loadListWords(lessonSelectedID) {
+  loadListWords(selectedWord) {
     // check if array lesson is empty
     if (!this.listWords) {
       // using loading controller to create loading icon while loading data
@@ -54,12 +77,18 @@ export class WordsDetail {
       // display loading icon
       loading.present();
       // get data and push in to array this.lessons
-      this.database.executeSql("SELECT * FROM words WHERE LessonID=" + lessonSelectedID, []).then((wordsData) => {
+      this.database.executeSql("SELECT * FROM words WHERE LessonID=" + selectedWord.lessonID, []).then((wordsData) => {
         this.listWords = [];
+        this.length = wordsData.rows.length;
         // alert("words total: " + wordsData.rows.length);
         if (wordsData.rows.length > 0) {
           for (var i = 0; i < wordsData.rows.length; i++) {
             // temporary variable store one word
+            if (wordsData.rows.item(i).WordID === selectedWord.wordID) {
+              this.index = i;
+              this.startIndex = this.index;
+            }
+
             let wordTemp: Word = {
               wordID: wordsData.rows.item(i).WordID,
               word: wordsData.rows.item(i).Word,
@@ -91,7 +120,7 @@ export class WordsDetail {
       });
     }
   } // end function getListWords
- 
+
   /////// Function get examples
   getWordExamplesData(wordTemp) {
     // BLOCK of code query examples data and words families data 
@@ -109,9 +138,9 @@ export class WordsDetail {
     }, (error) => {
       console.log("ERROR when get examples: " + JSON.stringify(error) + " wordID:" + wordTemp.wordID);
       alert("error when get examples: " + error + " wordID:" + wordTemp.wordID); // disappear icon loading even if error
-    }); 
+    });
   } // end GET examples
-  
+
   ////// function get wordsFamilies
   getWordsFamiliesData(wordTemp) {
     // GET word families for wordTemp
@@ -130,6 +159,6 @@ export class WordsDetail {
     }, (error) => {
       console.log("ERROR when get words families: " + JSON.stringify(error) + " wordID:" + wordTemp.wordID);
       alert("error when get words families: " + error + " wordID:" + wordTemp.wordID); // disappear icon loading even if error
-    }); 
+    });
   } // end GET word families 
 }

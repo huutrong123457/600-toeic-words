@@ -24594,3 +24594,7 @@ page-words-detail .families p {
 page-words-detail .header {
   color: #005D53;
 }
+
+page-words-detail ion-slides {
+  height: initial;
+}

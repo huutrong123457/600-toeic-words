@@ -1,15 +1,15 @@
 <ion-header>
     <ion-navbar color="primary">
-        <ion-title>Flash card (1/12) </ion-title>
+        <ion-title>Flash card ({{index + 1}}/{{length}}) </ion-title>
     </ion-navbar>
 </ion-header>
 <ion-content>
-    <ion-slides>
+    <ion-slides (ionSlideNextEnd)="next()" (ionSlidePrevEnd)="pre()">
         <ion-slide *ngFor="let word of listWords">
             <ion-card>
                 <div class="word">
                     <span>{{word.word}} ({{word.type}})</span>
-                    <button color="danger" ion-button large clear icon-only>
+                    <button color="danger" ion-button large clear icon-only (click)="playAudio(word)">
                 <ion-icon name="volume-up"></ion-icon>              
             </button>
                 </div>
@@ -20,7 +20,7 @@
                     <p class="phienam">{{word.phienAm}}</p>
                 </div>
                 <div class="row">
-                    <p class="mean-text">{{word.meaning}}</p>
+                    <p class="mean-text" text-justify>{{word.meaning}}</p>
                 </div>
                 <div class="row example">
                     <p>Examples:</p>
