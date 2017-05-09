@@ -18,14 +18,27 @@ export class PracticePart1 {
   part1Object: Part1;
   selectedLesson: Lesson;
 
+  currentTime: number;
+  duration: number;
+  process: number;
   // temp variables
   A: string;
   B: string;
   C: string;
   D: string;
+  keyA: string = 'Listen and choose your answer';
+  keyB: string = 'Listen and choose your answer';
+  keyC: string = 'Listen and choose your answer';
+  keyD: string = 'Listen and choose your answer';
+  cssKeyA: string = '';
+  cssKeyB: string = '';
+  cssKeyC: string = '';
+  cssKeyD: string = '';
+  keyChoose: string;
   Answer: string;
   urlAudio: string;
   urlImg: string;
+  isPlay: boolean = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -51,13 +64,171 @@ export class PracticePart1 {
     );
   } // end constructor
 
-  playAudio() {
-    const file: MediaObject = this.media.create('/android_asset/www/assets/audio/practices/'+this.urlAudio+'.mp3',
-      (status) => console.log(status),
-      () => console.log('Action is successful.'),
-      (error) => console.log(error));
+  doCheck() {
+    console.log(this.keyChoose, this.Answer);
+    if (this.keyChoose === this.Answer) {
+      this.playSound(true);
+      //set css when true
+      switch (this.Answer) {
+        case 'A':
+          this.cssKeyA = 'correct';
+          break;
+        case 'B':
+          this.cssKeyB = 'correct';
+          break;
+        case 'C':
+          this.cssKeyC = 'correct';
+          break;
+        case 'D':
+          this.cssKeyD = 'correct';
+          break;
+      }
+    } else {
+      this.playSound(false);
+      //set css when false
+      switch (this.Answer) {
+        case 'A':
+          this.cssKeyA = 'correct';
+          break;
+        case 'B':
+          this.cssKeyB = 'correct';
+          break;
+        case 'C':
+          this.cssKeyC = 'correct';
+          break;
+        case 'D':
+          this.cssKeyD = 'correct';
+          break;
+      }
+      switch (this.keyChoose) {
+        case 'A':
+          this.cssKeyA = 'wrong';
+          break;
+        case 'B':
+          this.cssKeyB = 'wrong';
+          break;
+        case 'C':
+          this.cssKeyC = 'wrong';
+          break;
+        case 'D':
+          this.cssKeyD = 'wrong';
+          break;
+      }
+    }
+    this.keyA = this.A;
+    this.keyB = this.B;
+    this.keyC = this.C;
+    this.keyD = this.D;
+  }
 
-    file.play();
+  choose(key) {
+    this.keyChoose = key;
+    switch (key) {
+      case 'A':
+        this.cssKeyA = 'correct';
+        this.cssKeyC = '';
+        this.cssKeyB = '';
+        this.cssKeyD = '';
+        break;
+      case 'B':
+        this.cssKeyB = 'correct';
+        this.cssKeyC = '';
+        this.cssKeyA = '';
+        this.cssKeyD = '';
+        break;
+      case 'C':
+        this.cssKeyC = 'correct';
+        this.cssKeyA = '';
+        this.cssKeyB = '';
+        this.cssKeyD = '';
+        break;
+      case 'D':
+        this.cssKeyD = 'correct';
+        this.cssKeyC = '';
+        this.cssKeyB = '';
+        this.cssKeyA = '';
+        break;
+    }
+  }
+
+  playSound(isTrue) {
+    /*const srcCorrect = 'assets/audio/correct.mp3';
+    const srcWrong = 'assets/audio/wrong.mp3';
+    if (isTrue) {
+      this.nativeAudio.preloadSimple('correct', srcCorrect);
+      this.nativeAudio.play('correct');
+    } else {
+      this.nativeAudio.preloadSimple('wrong', srcWrong);
+      this.nativeAudio.play('wrong');
+    }*/
+  }
+
+  playAudio() {
+    if (!this.isPlay) {
+      const file: MediaObject = this.media.create('/android_asset/www/assets/audio/practices/' + this.urlAudio + '.mp3',
+        (status) => console.log(status),
+        () => console.log('Action is successful.'),
+        (error) => console.log(error));
+
+      let counter = 0;
+      let dur = setInterval(() => {
+        counter += 100;
+        if (counter > 2000)
+          clearInterval(dur);
+        let duration = file.getDuration();
+        console.log(duration);
+        if (duration > 0) {
+          clearInterval(dur);
+          this.duration = duration;
+        }
+      }, 100);
+
+      file.play();
+
+      let media = setInterval(() => {
+        file.getCurrentPosition().then((position) => {
+          if (position >= 0) {
+            this.currentTime = position;
+            this.setRange(position, this.duration);
+          } else {
+            this.isPlay = false;
+            this.currentTime = 0;
+            clearInterval(media);
+          }
+
+        }, (err) => {
+          console.log(err);
+        });
+      }, 1000);
+      this.isPlay = true;
+    }
+  }
+
+  setRange(current: number, duration: number) {
+    if (current <= 0 || duration <= 0)
+      return;
+    this.process = Math.ceil(current * 100 / duration);
+  }
+
+  convertTime(time: number): string {
+    if (time <= 0 || time === undefined)
+      return '00:00';
+    time = Math.ceil(time);
+    let min = Math.floor(time / 60);
+    let sec = time - 60 * min;
+    let str = '';
+    if (min < 10) {
+      str += '0' + min;
+    } else {
+      str += min;
+    }
+    if (sec < 10) {
+      str += ':0' + sec;
+    } else {
+      str += ':' + sec;
+    }
+
+    return str;
   }
 
   loadPart1Data(lessonSelectedID) {

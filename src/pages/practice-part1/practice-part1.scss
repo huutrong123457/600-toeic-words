@@ -29,4 +29,11 @@ page-practice-part1 {
     .large-text {
         font-size: 1.2em;
     }
+    .correct {
+        color: blue;
+    }
+    .wrong {
+        color: red;
+        text-decoration: line-through;
+    }
 }

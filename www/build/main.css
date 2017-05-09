@@ -24577,6 +24577,15 @@ page-practice-part1 .large-text {
   font-size: 1.2em;
 }
 
+page-practice-part1 .correct {
+  color: blue;
+}
+
+page-practice-part1 .wrong {
+  color: red;
+  text-decoration: line-through;
+}
+
 page-words-detail .word {
   font-size: 2em;
   font-weight: bold;
