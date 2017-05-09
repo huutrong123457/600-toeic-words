@@ -4,6 +4,8 @@ import { NavController, NavParams, LoadingController, Platform } from 'ionic-ang
 import { Lesson } from '../../models/lesson';
 import { Part1 } from '../../models/part1';
 
+import { MediaPlugin, MediaObject } from '@ionic-native/media'
+
 import { SQLite } from 'ionic-native';
 
 @Component({
@@ -28,7 +30,7 @@ export class PracticePart1 {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
-    public platform: Platform) {
+    public platform: Platform, private media: MediaPlugin) {
 
     // get selected lesson from homePage
     this.selectedLesson = navParams.data;
@@ -48,6 +50,15 @@ export class PracticePart1 {
     }
     );
   } // end constructor
+
+  playAudio() {
+    const file: MediaObject = this.media.create('/android_asset/www/assets/audio/practices/'+this.urlAudio+'.mp3',
+      (status) => console.log(status),
+      () => console.log('Action is successful.'),
+      (error) => console.log(error));
+
+    file.play();
+  }
 
   loadPart1Data(lessonSelectedID) {
     if (!this.part1Object) {
@@ -71,7 +82,7 @@ export class PracticePart1 {
             D: part1s.rows.item(0).D
           }
           loading.dismiss(); // disappear icon loading when done
-          
+
           this.A = this.part1Object.A;
           this.B = this.part1Object.B;
           this.C = this.part1Object.C;

@@ -23,6 +23,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import{ NativeAudio } from '@ionic-native/native-audio';
 
+import { MediaPlugin } from '@ionic-native/media'
+
 @NgModule({
   declarations: [
     MyApp,
@@ -67,6 +69,7 @@ import{ NativeAudio } from '@ionic-native/native-audio';
     StatusBar,
     SplashScreen,
     NativeAudio,
+    MediaPlugin,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

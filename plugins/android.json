@@ -30,7 +30,17 @@
         },
         "cordova-plugin-nativeaudio": {
             "PACKAGE_NAME": "com.ionicframework.trongit13kltn"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "com.ionicframework.trongit13kltn"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ionicframework.trongit13kltn"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.ionicframework.trongit13kltn"
+        }
+    }
 }
