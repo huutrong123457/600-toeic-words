@@ -24559,24 +24559,6 @@ page-practice-part1 ion-item {
   padding-left: 0px !important;
 }
 
-page-practice-part1 ion-col {
-  position: relative;
-}
-
-page-practice-part1 ion-col button {
-  top: 50%;
-  text-align: center;
-  position: absolute;
-}
-
-page-practice-part1 ion-row {
-  background-color: #009688;
-}
-
-page-practice-part1 .large-text {
-  font-size: 1.2em;
-}
-
 page-practice-part1 .correct {
   color: blue;
 }
@@ -24584,6 +24566,58 @@ page-practice-part1 .correct {
 page-practice-part1 .wrong {
   color: red;
   text-decoration: line-through;
+}
+
+page-practice-part2 .container {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #E1E2E1;
+}
+
+page-practice-part2 .background {
+  background-color: #E1E2E1 !important;
+}
+
+page-practice-part2 .direction h2 {
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  background-color: #ffffff;
+}
+
+page-practice-part2 .part-content {
+  background-color: #ffffff;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+page-practice-part2 h1 {
+  margin: 0px !important;
+  font-size: 1.4em;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+page-practice-part2 ion-item {
+  padding-left: 0px !important;
+}
+
+page-practice-part2 .correct {
+  color: blue;
+}
+
+page-practice-part2 .wrong {
+  color: red;
+  text-decoration: line-through;
+}
+
+page-practice-part2 .question {
+  color: blue;
+  font-size: 1.2em;
+  font-style: italic;
+  margin-right: 0 !important;
 }
 
 page-words-detail .word {

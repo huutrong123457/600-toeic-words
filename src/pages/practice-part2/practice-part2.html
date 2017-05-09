@@ -1,14 +1,59 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>practice-part2</ion-title>
+    <ion-navbar color="primary">
+        <ion-title>Question - Response</ion-title>
+        <ion-buttons end>
+            <button ion-button outline icon-left (click)="doCheck()">                
+                <ion-icon name="checkmark"></ion-icon>
+                Answers
+            </button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-card *ngFor="let question of part2Array">
-        <ion-item>{{question.Question}}</ion-item>
-        <ion-item>A. {{question.A}}</ion-item>
-        <ion-item>B. {{question.B}}</ion-item>
-        <ion-item>C. {{question.C}}</ion-item>
-    </ion-card>
+<ion-content class="background">
+    <div class="container">
+        <div class="direction">
+            <h2 text-justify>Listen to a question and three responses. Click on the letter of the best response to the question.</h2>
+        </div>
+        <div *ngFor="let question of part2Array; let i = index">
+            <div class="part-content">
+                <h1 text-justify>Question {{i+1}}</h1>
+                <ion-navbar color="primary">
+                    <ion-buttons left>
+                        <button class="btn-play" large ion-button color="light" (click)="playAudio(i)" clear icon-only>
+                        <ion-icon [hidden] = 'question.isPlay' name='play'></ion-icon>
+                        <ion-icon [hidden] = '!question.isPlay' name='pause'></ion-icon>                
+                    </button>
+                    </ion-buttons>
+                    <ion-range color="light" [(ngModel)]="question.process" min="0" max="100">
+                        <ion-label color="light" range-left>{{convertTime(question.currentTime)}}</ion-label>
+                        <ion-label color="light" range-right>{{convertTime(question.duration)}}</ion-label>
+                    </ion-range>
+                </ion-navbar>
+                <ion-list>
+                    <ion-item *ngIf='question.keyQuestion'>
+                        <h2 class="question" text-wrap text-justify>{{question.Question}}</h2>
+                    </ion-item>
+                    <ion-item (click)="choose(i, 'A')">
+                        <ion-avatar item-left>
+                            <img src="assets/icon/ic_a.png">
+                        </ion-avatar>
+                        <h2 [ngClass]="question.cssKeyA">{{question.keyA}}</h2>
+                    </ion-item>
+                    <ion-item (click)="choose(i, 'B')">
+                        <ion-avatar item-left>
+                            <img src="assets/icon/ic_b.PNG">
+                        </ion-avatar>
+                        <h2 [ngClass]="question.cssKeyB">{{question.keyB}}</h2>
+                    </ion-item>
+                    <ion-item (click)="choose(i, 'C')">
+                        <ion-avatar item-left>
+                            <img src="assets/icon/ic_c.PNG">
+                        </ion-avatar>
+                        <h2 [ngClass]="question.cssKeyC">{{question.keyC}}</h2>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+    </div>
 </ion-content>

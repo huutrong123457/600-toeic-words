@@ -44,18 +44,16 @@
 
 </ion-content>
 <ion-footer>
-    <ion-row>
-        <ion-col width-20>
+    <ion-navbar color="primary">
+        <ion-buttons left>
             <button class="btn-play" large ion-button color="light" (click)="playAudio()" clear icon-only>
                 <ion-icon [hidden] = 'isPlay' name='play'></ion-icon>
                 <ion-icon [hidden] = '!isPlay' name='pause'></ion-icon>                
             </button>
-        </ion-col>
-        <ion-col width-80>
-            <ion-range color="light" [(ngModel)]="process" min="0" max="100">
-                <ion-label color="light" class="large-text" range-left>{{convertTime(currentTime)}}</ion-label>
-                <ion-label color="light" class="large-text" range-right>{{convertTime(duration)}}</ion-label>
-            </ion-range>
-        </ion-col>
-    </ion-row>
+        </ion-buttons>
+        <ion-range color="light" [(ngModel)]="process" min="0" max="100">
+            <ion-label color="light" range-left>{{convertTime(currentTime)}}</ion-label>
+            <ion-label color="light" range-right>{{convertTime(duration)}}</ion-label>
+        </ion-range>
+    </ion-navbar>
 </ion-footer>

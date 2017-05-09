@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NavController, NavParams, LoadingController, Platform } from 'ionic-angular';
 
 import { Lesson } from '../../models/lesson';
@@ -12,7 +12,8 @@ import { SQLite } from 'ionic-native';
   selector: 'page-practice-part1',
   templateUrl: 'practice-part1.html',
 })
-export class PracticePart1 {
+export class PracticePart1 implements OnDestroy {
+
 
   public database: SQLite;
   part1Object: Part1;
@@ -39,6 +40,7 @@ export class PracticePart1 {
   urlAudio: string;
   urlImg: string;
   isPlay: boolean = false;
+  file: MediaObject;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -63,6 +65,13 @@ export class PracticePart1 {
     }
     );
   } // end constructor
+
+  ngOnDestroy(): void {
+    if (this.file != undefined) {
+      this.file.stop();
+      this.file.release();
+    }
+  }
 
   doCheck() {
     console.log(this.keyChoose, this.Answer);
@@ -165,7 +174,7 @@ export class PracticePart1 {
 
   playAudio() {
     if (!this.isPlay) {
-      const file: MediaObject = this.media.create('/android_asset/www/assets/audio/practices/' + this.urlAudio + '.mp3',
+      this.file = this.media.create('/android_asset/www/assets/audio/practices/' + this.urlAudio + '.mp3',
         (status) => console.log(status),
         () => console.log('Action is successful.'),
         (error) => console.log(error));
@@ -175,7 +184,7 @@ export class PracticePart1 {
         counter += 100;
         if (counter > 2000)
           clearInterval(dur);
-        let duration = file.getDuration();
+        let duration = this.file.getDuration();
         console.log(duration);
         if (duration > 0) {
           clearInterval(dur);
@@ -183,10 +192,10 @@ export class PracticePart1 {
         }
       }, 100);
 
-      file.play();
+      this.file.play();
 
       let media = setInterval(() => {
-        file.getCurrentPosition().then((position) => {
+        this.file.getCurrentPosition().then((position) => {
           if (position >= 0) {
             this.currentTime = position;
             this.setRange(position, this.duration);
