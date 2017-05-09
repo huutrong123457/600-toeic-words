@@ -1,17 +1,60 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>practice-part1</ion-title>
+    <ion-navbar color="primary">
+        <ion-title>Part 1: Photo</ion-title>
+        <ion-buttons end>
+            <button ion-button outline icon-left (click)="doCheck()">                
+                <ion-icon name="checkmark"></ion-icon>
+                Answers
+            </button>
+        </ion-buttons>
     </ion-navbar>
-</ion-header>
 
-<ion-content padding>
-    {{selectedLesson.lessonID}}
-    <p>Look at the picture and listen to sentences. Choose the sentence that best describes the picture.</p>
-    <ion-card>
+</ion-header>
+<ion-content>
+    <div class="container">
+        <p text-justify>Look at the picture and listen to sentences. Choose the sentence that best describes the picture.</p>
         <img src="{{urlImg}}" />
-        <ion-item>A. {{A}}</ion-item>
-        <ion-item>B. {{B}}</ion-item>
-        <ion-item>C. {{C}}</ion-item>
-        <ion-item>D. {{D}}</ion-item>
-    </ion-card>
+        <ion-list>
+            <ion-item (click)=chooseA()>
+                <ion-avatar item-left>
+                    <img src="assets/icon/ic_a.png">
+                </ion-avatar>
+                <h2>{{A}}</h2>
+            </ion-item>
+            <ion-item (click)=chooseB()>
+                <ion-avatar item-left>
+                    <img src="assets/icon/ic_b.PNG">
+                </ion-avatar>
+                <h2>{{B}}</h2>
+            </ion-item>
+            <ion-item (click)=chooseC()>
+                <ion-avatar item-left>
+                    <img src="assets/icon/ic_c.PNG">
+                </ion-avatar>
+                <h2>{{C}}</h2>
+            </ion-item>
+            <ion-item (click)=chooseD()>
+                <ion-avatar item-left>
+                    <img src="assets/icon/ic_d.PNG">
+                </ion-avatar>
+                <h2>{{D}}</h2>
+            </ion-item>
+        </ion-list>
+    </div>
+
 </ion-content>
+<ion-footer>
+    <ion-row>
+        <ion-col width-20>
+            <button class="btn-play" large ion-button color="light" clear icon-only>
+                <ion-icon name='play'></ion-icon>
+            </button>
+        </ion-col>
+        <ion-col width-80>
+            <ion-range color="light" [(ngModel)]="process" min="0" max="100">
+                <ion-label color="light" class="large-text" range-left>00:00</ion-label>
+                <ion-label color="light" class="large-text" range-right>00:28</ion-label>
+            </ion-range>
+        </ion-col>
+    </ion-row>
+</ion-footer>
