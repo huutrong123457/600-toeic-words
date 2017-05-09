@@ -4,7 +4,7 @@ import { NavController, NavParams, LoadingController, Platform } from 'ionic-ang
 import { SQLite } from 'ionic-native';
 
 import { Word } from '../../models/word';
-import { Lesson} from '../../models/lesson';
+import { Lesson } from '../../models/lesson';
 
 import { WordsDetail } from '../words-detail/words-detail';
 
@@ -30,11 +30,11 @@ export class WordsList {
     // create object sqlite
     this.database = new SQLite();
     // when platform ready-> open DB and load data from words table in db
+
     platform.ready().then(() => {
       this.database.openDatabase({
         name: 'toeic-voca.db',
-        location: 'default',
-        createFromLocation: 1
+        location: 'default'
       }).then((successed) => {
         this.loadWordsData(this.selectedLesson.lessonID)  // load data when open database succefully
       }, (err) => {
@@ -43,14 +43,15 @@ export class WordsList {
       });
     }
     );
+
   } // end constructor
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad WordsList');
   }
 
-  goToWordsDetail(selectedWord){
-        this.navCtrl.parent.parent.push(WordsDetail, selectedWord);
+  goToWordsDetail(selectedWord) {
+    this.navCtrl.parent.parent.push(WordsDetail, selectedWord);
   }
 
   // function load data
@@ -71,17 +72,17 @@ export class WordsList {
           for (var i = 0; i < wordsData.rows.length; i++) {
             // temporary variable store one word
             let wordTemp: Word = {
-              wordID:     wordsData.rows.item(i).WordID,
-              word:       wordsData.rows.item(i).Word,
-              type:       wordsData.rows.item(i).Type,
-              lessonID:   wordsData.rows.item(i).LessonID,
-              meaning:    wordsData.rows.item(i).Meaning,
-              favorite:   wordsData.rows.item(i).Favorite,
-              phienAm:    wordsData.rows.item(i).PhienAm,
-              linkImg:    wordsData.rows.item(i).linkImage,
-              linkAudio:  wordsData.rows.item(i).linkAudio,
-              examples:   [],
-              families:   []
+              wordID: wordsData.rows.item(i).WordID,
+              word: wordsData.rows.item(i).Word,
+              type: wordsData.rows.item(i).Type,
+              lessonID: wordsData.rows.item(i).LessonID,
+              meaning: wordsData.rows.item(i).Meaning,
+              favorite: wordsData.rows.item(i).Favorite,
+              phienAm: wordsData.rows.item(i).PhienAm,
+              linkImg: wordsData.rows.item(i).linkImage,
+              linkAudio: wordsData.rows.item(i).linkAudio,
+              examples: [],
+              families: []
             }
             // Push word completed to array words
             this.words.push(wordTemp);
@@ -90,7 +91,7 @@ export class WordsList {
           loading.dismiss(); // disappear icon loading when done
         }
         else { // when data is empty
-            loading.dismiss(); // disappear icon loading when done
+          loading.dismiss(); // disappear icon loading when done
         }
       }, (error) => {
         console.log("ERROR: " + JSON.stringify(error));

@@ -32,8 +32,7 @@ export class WordsDetail {
     platform.ready().then(() => {
       this.database.openDatabase({
         name: 'toeic-voca.db',
-        location: 'default',
-        createFromLocation: 1
+        location: 'default'
       }).then((successed) => {
         this.loadListWords(this.selectedWord);
       }, (err) => {

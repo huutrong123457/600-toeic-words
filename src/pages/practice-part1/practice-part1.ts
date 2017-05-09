@@ -38,8 +38,7 @@ export class PracticePart1 {
     platform.ready().then(() => {
       this.database.openDatabase({
         name: 'toeic-voca.db',
-        location: 'default',
-        createFromLocation: 1
+        location: 'default'
       }).then((successed) => {
         this.loadPart1Data(this.selectedLesson.lessonID);  // load data when open database succefully
       }, (err) => {
