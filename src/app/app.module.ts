@@ -19,6 +19,8 @@ import { PracticePart6 } from '../pages/practice-part6/practice-part6';
 import { PracticePart7 } from '../pages/practice-part7/practice-part7';
 import { GameWordFill} from '../pages/game-word-fill/game-word-fill';
 
+import { SafeHtml } from '../pipe/safe-html'
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import{ NativeAudio } from '@ionic-native/native-audio';
@@ -42,7 +44,8 @@ import { HttpModule } from '@angular/http'
     PracticePart5,
     PracticePart6,
     PracticePart7,
-    GameWordFill
+    GameWordFill,
+    SafeHtml
   ],
   imports: [
     BrowserModule,
