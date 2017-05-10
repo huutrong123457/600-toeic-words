@@ -9,8 +9,10 @@ page-practice-part1 {
         height: 200px;
     }
     p {
+        padding: 10px;
         font-size: 1.2em;
-        font-weight: bold;
+        font-style: italic;
+        background-color: #B2DFDB;
     }
     ion-item {
         padding-left: 0px !important;

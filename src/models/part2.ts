@@ -18,5 +18,6 @@ export interface Part2 {
     cssKeyA: string,
     cssKeyB: string,
     cssKeyC: string, 
-    isPlay: boolean
+    isPlay: boolean,
+    media: any
 }

@@ -24551,8 +24551,10 @@ page-practice-part1 img {
 }
 
 page-practice-part1 p {
+  padding: 10px;
   font-size: 1.2em;
-  font-weight: bold;
+  font-style: italic;
+  background-color: #B2DFDB;
 }
 
 page-practice-part1 ion-item {
@@ -24615,9 +24617,54 @@ page-practice-part2 .wrong {
 
 page-practice-part2 .question {
   color: blue;
-  font-size: 1.2em;
+  font-size: 1em;
   font-style: italic;
   margin-right: 0 !important;
+}
+
+page-practice-part3 .container {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #E1E2E1;
+}
+
+page-practice-part3 .background {
+  background-color: #E1E2E1 !important;
+}
+
+page-practice-part3 .direction h2 {
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  background-color: #ffffff;
+}
+
+page-practice-part3 .part-content {
+  background-color: #ffffff;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+page-practice-part3 h1 {
+  margin: 0px !important;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+page-practice-part3 ion-item {
+  padding-left: 0px !important;
+}
+
+page-practice-part3 .correct {
+  color: blue;
+}
+
+page-practice-part3 .wrong {
+  color: red;
+  text-decoration: line-through;
 }
 
 page-words-detail .word {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { NavController, NavParams, LoadingController, Platform } from 'ionic-angular';
 
 import { Lesson } from '../../models/lesson';
@@ -11,7 +11,7 @@ import { MediaPlugin, MediaObject } from '@ionic-native/media';
   selector: 'page-practice-part2',
   templateUrl: 'practice-part2.html'
 })
-export class PracticePart2 {
+export class PracticePart2 implements OnDestroy {
 
   public database: SQLite;
   public part2Array: Array<Part2>; // 2 questions part2
@@ -61,7 +61,6 @@ export class PracticePart2 {
   }
 
   doCheck() {
-    console.log(this.part2Array);
     this.part2Array.forEach(part => {
       if (part.keyChoose === part.Answer) {
         //set css when true
@@ -110,7 +109,7 @@ export class PracticePart2 {
 
   playAudio(index) {
     if (!this.part2Array[index].isPlay) {
-      const file: MediaObject = this.media.create('/android_asset/www/assets/audio/practices/' + this.part2Array[index].urlAudio + '.mp3',
+      this.part2Array[index].media = this.media.create('/android_asset/www/assets/audio/practices/' + this.part2Array[index].urlAudio + '.mp3',
         (status) => console.log(status),
         () => console.log('Action is successful.'),
         (error) => console.log(error));
@@ -120,7 +119,7 @@ export class PracticePart2 {
         counter += 100;
         if (counter > 2000)
           clearInterval(dur);
-        let duration = file.getDuration();
+        let duration = this.part2Array[index].media.getDuration();
         console.log(duration);
         if (duration > 0) {
           clearInterval(dur);
@@ -128,10 +127,10 @@ export class PracticePart2 {
         }
       }, 100);
 
-      file.play();
+      this.part2Array[index].media.play();
 
       let media = setInterval(() => {
-        file.getCurrentPosition().then((position) => {
+        this.part2Array[index].media.getCurrentPosition().then((position) => {
           if (position >= 0) {
             this.part2Array[index].currentTime = position;
             this.setRange(position, this.part2Array[index].duration, index);
@@ -147,6 +146,16 @@ export class PracticePart2 {
       }, 1000);
       this.part2Array[index].isPlay = true;
     }
+  }
+
+  ngOnDestroy(): void {
+    this.part2Array.forEach(part => {
+      if (part.media != undefined) {
+        part.media.stop();
+        part.media.release();
+      }
+    });
+
   }
 
   setRange(current: number, duration: number, index) {
@@ -211,7 +220,8 @@ export class PracticePart2 {
               cssKeyA: '',
               cssKeyB: '',
               cssKeyC: '',
-              isPlay: false
+              isPlay: false,
+              media: undefined
             }
             this.part2Array.push(question);
           } // end for loop get question in part2s
