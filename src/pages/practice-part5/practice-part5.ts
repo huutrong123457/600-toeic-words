@@ -19,6 +19,10 @@ export class PracticePart5 {
     this.selectedLesson = navParams.data;
   }
 
+  choose(){
+    
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad PracticePart5Page');
   }

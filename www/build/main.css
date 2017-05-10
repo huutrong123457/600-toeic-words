@@ -24756,6 +24756,188 @@ page-practice-part4 .wrong {
   text-decoration: line-through;
 }
 
+page-practice-part5 .container {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #E1E2E1;
+}
+
+page-practice-part5 .background {
+  background-color: #E1E2E1 !important;
+}
+
+page-practice-part5 .direction h2 {
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  background-color: #ffffff;
+}
+
+page-practice-part5 .point {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: red;
+  background-color: #ffffff;
+}
+
+page-practice-part5 .part-content {
+  background-color: #ffffff;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+page-practice-part5 h1 {
+  margin: 0px !important;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+page-practice-part5 ion-item {
+  padding-left: 0px !important;
+}
+
+page-practice-part5 .correct {
+  color: blue;
+}
+
+page-practice-part5 .wrong {
+  color: red;
+  text-decoration: line-through;
+}
+
+page-practice-part6 .container {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #E1E2E1;
+}
+
+page-practice-part6 .background {
+  background-color: #E1E2E1 !important;
+}
+
+page-practice-part6 .direction h2 {
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  background-color: #ffffff;
+}
+
+page-practice-part6 .paragraph {
+  background-color: #ffffff;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+page-practice-part6 .point {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: red;
+  background-color: #ffffff;
+}
+
+page-practice-part6 .part-content {
+  background-color: #ffffff;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+page-practice-part6 h1 {
+  margin: 0px !important;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+page-practice-part6 ion-item {
+  padding-left: 0px !important;
+}
+
+page-practice-part6 .correct {
+  color: blue;
+}
+
+page-practice-part6 .wrong {
+  color: red;
+  text-decoration: line-through;
+}
+
+page-practice-part7 .container {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #E1E2E1;
+}
+
+page-practice-part7 .background {
+  background-color: #E1E2E1 !important;
+}
+
+page-practice-part7 .direction h2 {
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  background-color: #ffffff;
+}
+
+page-practice-part7 .paragraph {
+  background-color: #ffffff;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+page-practice-part7 .point {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: red;
+  background-color: #ffffff;
+}
+
+page-practice-part7 .part-content {
+  background-color: #ffffff;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+page-practice-part7 h1 {
+  margin: 0px !important;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+page-practice-part7 ion-item {
+  padding-left: 0px !important;
+}
+
+page-practice-part7 .correct {
+  color: blue;
+}
+
+page-practice-part7 .wrong {
+  color: red;
+  text-decoration: line-through;
+}
+
 page-words-detail .word {
   font-size: 2em;
   font-weight: bold;

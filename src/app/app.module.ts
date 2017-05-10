@@ -24,6 +24,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import{ NativeAudio } from '@ionic-native/native-audio';
 
 import { MediaPlugin } from '@ionic-native/media'
+import { HttpModule } from '@angular/http'
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { MediaPlugin } from '@ionic-native/media'
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],

@@ -5,7 +5,7 @@ import { Lesson } from '../../models/lesson';
 import { Part2 } from '../../models/part2';
 
 import { SQLite } from 'ionic-native';
-import { MediaPlugin, MediaObject } from '@ionic-native/media';
+import { MediaPlugin } from '@ionic-native/media';
 
 @Component({
   selector: 'page-practice-part2',
