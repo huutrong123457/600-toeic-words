@@ -1,19 +1,69 @@
 <ion-header>
-
-    <ion-navbar>
-        <ion-title>practice-part4</ion-title>
+    <ion-navbar color="primary">
+        <ion-title>Part 4: Short Talks</ion-title>
+        <ion-buttons end>
+            <button ion-button outline icon-left (click)="doCheck()">                
+                <ion-icon name="checkmark"></ion-icon>
+                Answers
+            </button>
+        </ion-buttons>
     </ion-navbar>
-
 </ion-header>
 
 
-<ion-content padding>
-    {{selectedLesson.lessonID}}
-    <ion-card *ngFor="let question of part4QuestionsArray">
-        <ion-item>{{question.Question}}</ion-item>
-        <ion-item>A. {{question.A}}</ion-item>
-        <ion-item>B. {{question.B}}</ion-item>
-        <ion-item>C. {{question.C}}</ion-item>
-        <ion-item>C. {{question.D}}</ion-item>
-    </ion-card>
+<ion-content class="background">
+    <div class="container">
+        <div class="direction">
+            <h2 text-justify>You will hear some short talks given by a single speaker. You will be asked to answer three questions about what the speaker says in each short talk. Select the best response to each question and mark the letter (A), (B), (C), or (D) on your
+                answer sheet. The talks will be spoken only one time and will not be printed in your test book.</h2>
+        </div>
+        <div class="point" *ngIf="showPoint">
+            Correct({{point}}/{{length}})
+        </div>
+        <div *ngFor="let question of part4QuestionsArray; let i = index">
+            <div class="part-content">
+                <h1 text-justify>{{i + 1}}. {{question.Question}}</h1>
+                <ion-list>
+                    <ion-item (click)='choose(i, "A")'>
+                        <ion-avatar item-left>
+                            <img src="assets/icon/ic_a.png">
+                        </ion-avatar>
+                        <h2 text-wrap text-justify [ngClass]="question.cssKeyA">{{question.A}}</h2>
+                    </ion-item>
+                    <ion-item (click)='choose(i, "B")'>
+                        <ion-avatar item-left>
+                            <img src="assets/icon/ic_b.PNG">
+                        </ion-avatar>
+                        <h2 text-wrap text-justify [ngClass]="question.cssKeyB">{{question.B}}</h2>
+                    </ion-item>
+                    <ion-item (click)='choose(i, "C")'>
+                        <ion-avatar item-left>
+                            <img src="assets/icon/ic_c.PNG">
+                        </ion-avatar>
+                        <h2 text-wrap text-justify [ngClass]="question.cssKeyC">{{question.C}}</h2>
+                    </ion-item>
+                    <ion-item (click)='choose(i, "D")'>
+                        <ion-avatar item-left>
+                            <img src="assets/icon/ic_d.PNG">
+                        </ion-avatar>
+                        <h2 text-wrap text-justify [ngClass]="question.cssKeyD">{{question.D}}</h2>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </div>
+    </div>
 </ion-content>
+<ion-footer>
+    <ion-navbar color="primary">
+        <ion-buttons left>
+            <button class="btn-play" large ion-button color="light" (click)="playAudio()" clear icon-only>
+                <ion-icon [hidden] = 'isPlay' name='play'></ion-icon>
+                <ion-icon [hidden] = '!isPlay' name='pause'></ion-icon>                
+            </button>
+        </ion-buttons>
+        <ion-range color="light" [(ngModel)]="process" min="0" max="100">
+            <ion-label color="light" range-left>{{convertTime(currentTime)}}</ion-label>
+            <ion-label color="light" range-right>{{convertTime(duration)}}</ion-label>
+        </ion-range>
+    </ion-navbar>
+</ion-footer>

@@ -15,6 +15,9 @@
         <div class="direction">
             <h2 text-justify>Listen to a question and three responses. Click on the letter of the best response to the question.</h2>
         </div>
+        <div class="point" *ngIf="showPoint">
+            Correct({{point}}/{{length}})
+        </div>
         <div *ngFor="let question of part2Array; let i = index">
             <div class="part-content">
                 <h1 text-justify>Question {{i+1}}</h1>

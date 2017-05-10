@@ -16,6 +16,9 @@ export class PracticePart2 implements OnDestroy {
   public database: SQLite;
   public part2Array: Array<Part2>; // 2 questions part2
   selectedLesson: Lesson;
+  point: number = 0;
+  length: number = 0;
+  showPoint: boolean = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -63,6 +66,7 @@ export class PracticePart2 implements OnDestroy {
   doCheck() {
     this.part2Array.forEach(part => {
       if (part.keyChoose === part.Answer) {
+        this.point++;
         //set css when true
         switch (part.Answer) {
           case 'A':
@@ -104,6 +108,7 @@ export class PracticePart2 implements OnDestroy {
       part.keyB = part.B;
       part.keyC = part.C;
       part.keyQuestion = true;
+      this.showPoint = true;
     });
   }
 
@@ -198,6 +203,7 @@ export class PracticePart2 implements OnDestroy {
       this.database.executeSql("SELECT * FROM part2s WHERE LessonID=" + lessonSelectedID, []).then((part2s) => {
         this.part2Array = [];
         if (part2s.rows.length > 0) {
+          this.length = part2s.rows.length;
           for (var i = 0; i < part2s.rows.length; i++) {
             // temporary variable store one question in part2
             let question: Part2 = {

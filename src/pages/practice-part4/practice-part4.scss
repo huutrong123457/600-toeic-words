@@ -1,3 +1,49 @@
 page-practice-part4 {
-
+    .container {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        background-color: #E1E2E1;
+    }
+    .background {
+        background-color: #E1E2E1 !important;
+    }
+    .direction h2 {
+        padding: 10px;
+        font-style: italic;
+        font-size: 1.2em;
+        background-color: #ffffff;
+    }
+    .point {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 10px;
+        font-style: italic;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: red;
+        background-color: #ffffff;
+    }
+    .part-content {
+        background-color: #ffffff;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    h1 {
+        margin: 0px !important;
+        font-size: 1.2em;
+        font-weight: bold;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    ion-item {
+        padding-left: 0px !important;
+    }
+    .correct {
+        color: blue;
+    }
+    .wrong {
+        color: red;
+        text-decoration: line-through;
+    }
 }

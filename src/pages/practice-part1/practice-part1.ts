@@ -41,6 +41,9 @@ export class PracticePart1 implements OnDestroy {
   urlImg: string;
   isPlay: boolean = false;
   file: MediaObject;
+  point: number = 0;
+  length: number = 0;
+  showPoint: boolean = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -76,6 +79,7 @@ export class PracticePart1 implements OnDestroy {
   doCheck() {
     console.log(this.keyChoose, this.Answer);
     if (this.keyChoose === this.Answer) {
+      this.point++;
       this.playSound(true);
       //set css when true
       switch (this.Answer) {
@@ -124,6 +128,7 @@ export class PracticePart1 implements OnDestroy {
           break;
       }
     }
+    this.showPoint =true;
     this.keyA = this.A;
     this.keyB = this.B;
     this.keyC = this.C;
@@ -250,6 +255,7 @@ export class PracticePart1 implements OnDestroy {
       loading.present();
       this.database.executeSql("SELECT * FROM part1s WHERE LessonID=" + lessonSelectedID, []).then((part1s) => {
         if (part1s.rows.length > 0) {
+          this.length = part1s.rows.length;
           this.part1Object = {
             ID: part1s.rows.item(0).ID,
             LessonID: part1s.rows.item(0).LessonID,

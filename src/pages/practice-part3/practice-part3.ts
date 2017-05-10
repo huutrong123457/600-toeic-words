@@ -21,6 +21,9 @@ export class PracticePart3 implements OnDestroy {
   duration: number = 0;
   process: number = 0;
   file: MediaObject;
+  point: number = 0;
+  length: number = 0;
+  showPoint: boolean = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -47,6 +50,7 @@ export class PracticePart3 implements OnDestroy {
   doCheck() {
     this.part3QuestionsArray.forEach(part => {
       if (part.keyChoose === part.Answer) {
+        this.point++;
         //set css when true
         switch (part.Answer) {
           case 'A':
@@ -94,6 +98,7 @@ export class PracticePart3 implements OnDestroy {
         }
       }
     });
+    this.showPoint = true;
   }
 
   choose(index, key) {
@@ -214,6 +219,7 @@ export class PracticePart3 implements OnDestroy {
       this.database.executeSql("SELECT * FROM part3s WHERE LessonID=" + lessonSelectedID, []).then((part3s) => {
         this.part3QuestionsArray = [];
         if (part3s.rows.length > 0) {
+          this.length = part3s.rows.length;
           for (var i = 0; i < part3s.rows.length; i++) {
             // temporary variable store one question in part3
             let question: Part3 = {

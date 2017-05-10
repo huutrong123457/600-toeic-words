@@ -24550,6 +24550,17 @@ page-practice-part1 img {
   height: 200px;
 }
 
+page-practice-part1 .point {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: red;
+  background-color: #B2DFDB;
+}
+
 page-practice-part1 p {
   padding: 10px;
   font-size: 1.2em;
@@ -24585,6 +24596,17 @@ page-practice-part2 .direction h2 {
   padding: 10px;
   font-style: italic;
   font-size: 1.2em;
+  background-color: #ffffff;
+}
+
+page-practice-part2 .point {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: red;
   background-color: #ffffff;
 }
 
@@ -24640,6 +24662,17 @@ page-practice-part3 .direction h2 {
   background-color: #ffffff;
 }
 
+page-practice-part3 .point {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: red;
+  background-color: #ffffff;
+}
+
 page-practice-part3 .part-content {
   background-color: #ffffff;
   padding: 10px;
@@ -24663,6 +24696,62 @@ page-practice-part3 .correct {
 }
 
 page-practice-part3 .wrong {
+  color: red;
+  text-decoration: line-through;
+}
+
+page-practice-part4 .container {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #E1E2E1;
+}
+
+page-practice-part4 .background {
+  background-color: #E1E2E1 !important;
+}
+
+page-practice-part4 .direction h2 {
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  background-color: #ffffff;
+}
+
+page-practice-part4 .point {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: red;
+  background-color: #ffffff;
+}
+
+page-practice-part4 .part-content {
+  background-color: #ffffff;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+page-practice-part4 h1 {
+  margin: 0px !important;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+page-practice-part4 ion-item {
+  padding-left: 0px !important;
+}
+
+page-practice-part4 .correct {
+  color: blue;
+}
+
+page-practice-part4 .wrong {
   color: red;
   text-decoration: line-through;
 }

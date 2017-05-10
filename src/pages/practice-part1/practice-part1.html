@@ -14,6 +14,9 @@
     <div class="container">
         <p text-justify>Look at the picture and listen to sentences. Choose the sentence that best describes the picture.</p>
         <img src="{{urlImg}}" />
+        <div class="point" *ngIf="showPoint">
+            Correct({{point}}/{{length}})
+        </div>
         <ion-list>
             <ion-item (click)='choose("A")'>
                 <ion-avatar item-left>
