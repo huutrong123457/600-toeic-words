@@ -10,6 +10,7 @@ import { PracticePart4 } from '../practice-part4/practice-part4';
 import { PracticePart5 } from '../practice-part5/practice-part5';
 import { PracticePart6 } from '../practice-part6/practice-part6';
 import { PracticePart7 } from '../practice-part7/practice-part7';
+import { WordInContextPage } from '../word-in-context/word-in-context';
 
 @Component({
   selector: 'page-pratice-parts',
@@ -30,6 +31,7 @@ export class PracticeParts {
 
   goToPartDetail(whichPart) {
     switch (whichPart) {
+      case 0: this.navCtrl.parent.parent.push(WordInContextPage, this.selectedLesson); break;
       case 1: this.navCtrl.parent.parent.push(PracticePart1, this.selectedLesson); break;
       case 2: this.navCtrl.parent.parent.push(PracticePart2, this.selectedLesson); break;
       case 3: this.navCtrl.parent.parent.push(PracticePart3, this.selectedLesson); break;

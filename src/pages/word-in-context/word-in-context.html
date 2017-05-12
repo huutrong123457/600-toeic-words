@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Word In Context</ion-title>
+        <ion-buttons end>
+            <button ion-button outline icon-left (click)="doCheck()">                
+                <ion-icon name="checkmark"></ion-icon>
+                Answers
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+<ion-content class="background">
+    <div class="container">
+        <div class="page-content">
+            <div id="questionText" *ngFor="let text of questionTextToArray;let i = index">
+                <p>{{text}}</p><span><select *ngIf="lastText!=i" [(ngModel)]="sbs" interface="action-sheet">
+                    <option value="1">Answers 1</option>
+                    <option value="2">Answers 2</option>
+                    <option value="3">Answers 3</option>
+                    <option value="4">Answers 4</option>
+                </select></span>
+            </div>
+        </div>
+    </div>
+</ion-content>

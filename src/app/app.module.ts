@@ -17,6 +17,7 @@ import { PracticePart4 } from '../pages/practice-part4/practice-part4';
 import { PracticePart5 } from '../pages/practice-part5/practice-part5';
 import { PracticePart6 } from '../pages/practice-part6/practice-part6';
 import { PracticePart7 } from '../pages/practice-part7/practice-part7';
+import { WordInContextPage } from '../pages/word-in-context/word-in-context';
 import { GameWordFill} from '../pages/game-word-fill/game-word-fill';
 
 import { SafeHtml } from '../pipe/safe-html'
@@ -45,6 +46,7 @@ import { HttpModule } from '@angular/http'
     PracticePart6,
     PracticePart7,
     GameWordFill,
+    WordInContextPage,
     SafeHtml
   ],
   imports: [
@@ -68,7 +70,8 @@ import { HttpModule } from '@angular/http'
     PracticePart5,
     PracticePart6,
     PracticePart7,
-    GameWordFill
+    GameWordFill,
+    WordInContextPage
   ],
   providers: [
     StatusBar,
