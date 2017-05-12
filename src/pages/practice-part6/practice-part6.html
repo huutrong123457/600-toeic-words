@@ -23,119 +23,32 @@
 
         </div>
         <div>
-            <div class="part-content">
-                <h1 text-justify>101. Register early if you would like to attend next Tuesday’s ______ on project management.</h1>
+            <div class="part-content" *ngFor="let question of part6QuestionsArray; let i = index">
+                <h1 text-justify>{{i+1}}</h1>
                 <ion-list>
                     <ion-item (click)='choose()'>
                         <ion-avatar item-left>
                             <img src="assets/icon/ic_a.png">
                         </ion-avatar>
-                        <h2 text-wrap text-justify>seminar</h2>
+                        <h2 text-wrap text-justify>{{question.A}}</h2>
                     </ion-item>
                     <ion-item (click)='choose()'>
                         <ion-avatar item-left>
                             <img src="assets/icon/ic_b.PNG">
                         </ion-avatar>
-                        <h2 text-wrap text-justify>reason</h2>
+                        <h2 text-wrap text-justify>{{question.B}}</h2>
                     </ion-item>
                     <ion-item (click)='choose()'>
                         <ion-avatar item-left>
                             <img src="assets/icon/ic_c.PNG">
                         </ion-avatar>
-                        <h2 text-wrap text-justify>policy</h2>
+                        <h2 text-wrap text-justify>{{question.C}}</h2>
                     </ion-item>
                     <ion-item (click)='choose()'>
                         <ion-avatar item-left>
                             <img src="assets/icon/ic_d.PNG">
                         </ion-avatar>
-                        <h2 text-wrap text-justify>scene</h2>
-                    </ion-item>
-                </ion-list>
-            </div>
-            <div class="part-content">
-                <h1 text-justify>101. Register early if you would like to attend next Tuesday’s ______ on project management.</h1>
-                <ion-list>
-                    <ion-item (click)='choose()'>
-                        <ion-avatar item-left>
-                            <img src="assets/icon/ic_a.png">
-                        </ion-avatar>
-                        <h2 text-wrap text-justify>seminar</h2>
-                    </ion-item>
-                    <ion-item (click)='choose()'>
-                        <ion-avatar item-left>
-                            <img src="assets/icon/ic_b.PNG">
-                        </ion-avatar>
-                        <h2 text-wrap text-justify>reason</h2>
-                    </ion-item>
-                    <ion-item (click)='choose()'>
-                        <ion-avatar item-left>
-                            <img src="assets/icon/ic_c.PNG">
-                        </ion-avatar>
-                        <h2 text-wrap text-justify>policy</h2>
-                    </ion-item>
-                    <ion-item (click)='choose()'>
-                        <ion-avatar item-left>
-                            <img src="assets/icon/ic_d.PNG">
-                        </ion-avatar>
-                        <h2 text-wrap text-justify>scene</h2>
-                    </ion-item>
-                </ion-list>
-            </div>
-            <div class="part-content">
-                <h1 text-justify>101. Register early if you would like to attend next Tuesday’s ______ on project management.</h1>
-                <ion-list>
-                    <ion-item (click)='choose()'>
-                        <ion-avatar item-left>
-                            <img src="assets/icon/ic_a.png">
-                        </ion-avatar>
-                        <h2 text-wrap text-justify>seminar</h2>
-                    </ion-item>
-                    <ion-item (click)='choose()'>
-                        <ion-avatar item-left>
-                            <img src="assets/icon/ic_b.PNG">
-                        </ion-avatar>
-                        <h2 text-wrap text-justify>reason</h2>
-                    </ion-item>
-                    <ion-item (click)='choose()'>
-                        <ion-avatar item-left>
-                            <img src="assets/icon/ic_c.PNG">
-                        </ion-avatar>
-                        <h2 text-wrap text-justify>policy</h2>
-                    </ion-item>
-                    <ion-item (click)='choose()'>
-                        <ion-avatar item-left>
-                            <img src="assets/icon/ic_d.PNG">
-                        </ion-avatar>
-                        <h2 text-wrap text-justify>scene</h2>
-                    </ion-item>
-                </ion-list>
-            </div>
-            <div class="part-content">
-                <h1 text-justify>101. Register early if you would like to attend next Tuesday’s ______ on project management.</h1>
-                <ion-list>
-                    <ion-item (click)='choose()'>
-                        <ion-avatar item-left>
-                            <img src="assets/icon/ic_a.png">
-                        </ion-avatar>
-                        <h2 text-wrap text-justify>seminar</h2>
-                    </ion-item>
-                    <ion-item (click)='choose()'>
-                        <ion-avatar item-left>
-                            <img src="assets/icon/ic_b.PNG">
-                        </ion-avatar>
-                        <h2 text-wrap text-justify>reason</h2>
-                    </ion-item>
-                    <ion-item (click)='choose()'>
-                        <ion-avatar item-left>
-                            <img src="assets/icon/ic_c.PNG">
-                        </ion-avatar>
-                        <h2 text-wrap text-justify>policy</h2>
-                    </ion-item>
-                    <ion-item (click)='choose()'>
-                        <ion-avatar item-left>
-                            <img src="assets/icon/ic_d.PNG">
-                        </ion-avatar>
-                        <h2 text-wrap text-justify>scene</h2>
+                        <h2 text-wrap text-justify>{{question.D}}</h2>
                     </ion-item>
                 </ion-list>
             </div>
