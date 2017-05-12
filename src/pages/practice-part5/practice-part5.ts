@@ -15,7 +15,9 @@ export class PracticePart5 {
   public database: SQLite;
   public part5QuestionsArray: Array<Part5>; // 6 questions part5
   selectedLesson: Lesson;
+  point: number = 0;
   length: number = 0;
+  showPoint: boolean = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -39,8 +41,89 @@ export class PracticePart5 {
     );
   } // end constructor
 
-  choose(){
-    
+    doCheck() {
+    this.part5QuestionsArray.forEach(part => {
+      if (part.keyChoose === part.Answer) {
+        this.point++;
+        //set css when true
+        switch (part.Answer) {
+          case 'A':
+            part.cssKeyA = 'correct';
+            break;
+          case 'B':
+            part.cssKeyB = 'correct';
+            break;
+          case 'C':
+            part.cssKeyC = 'correct';
+            break;
+          case 'D':
+            part.cssKeyD = 'correct';
+            break;
+        }
+      } else {
+        //set css when false
+        switch (part.Answer) {
+          case 'A':
+            part.cssKeyA = 'correct';
+            break;
+          case 'B':
+            part.cssKeyB = 'correct';
+            break;
+          case 'C':
+            part.cssKeyC = 'correct';
+            break;
+          case 'D':
+            part.cssKeyD = 'correct';
+            break;
+        }
+        switch (part.keyChoose) {
+          case 'A':
+            part.cssKeyA = 'wrong';
+            break;
+          case 'B':
+            part.cssKeyB = 'wrong';
+            break;
+          case 'C':
+            part.cssKeyC = 'wrong';
+            break;
+          case 'D':
+            part.cssKeyD = 'wrong';
+            break;
+        }
+      }
+    });
+    this.showPoint = true;
+
+  }
+
+  choose(index, key) {
+    this.part5QuestionsArray[index].keyChoose = key;
+    switch (key) {
+      case 'A':
+        this.part5QuestionsArray[index].cssKeyA = 'correct';
+        this.part5QuestionsArray[index].cssKeyC = '';
+        this.part5QuestionsArray[index].cssKeyB = '';
+        this.part5QuestionsArray[index].cssKeyD = '';
+        break;
+      case 'B':
+        this.part5QuestionsArray[index].cssKeyB = 'correct';
+        this.part5QuestionsArray[index].cssKeyC = '';
+        this.part5QuestionsArray[index].cssKeyA = '';
+        this.part5QuestionsArray[index].cssKeyD = '';
+        break;
+      case 'C':
+        this.part5QuestionsArray[index].cssKeyC = 'correct';
+        this.part5QuestionsArray[index].cssKeyA = '';
+        this.part5QuestionsArray[index].cssKeyB = '';
+        this.part5QuestionsArray[index].cssKeyD = '';
+        break;
+      case 'D':
+        this.part5QuestionsArray[index].cssKeyC = '';
+        this.part5QuestionsArray[index].cssKeyA = '';
+        this.part5QuestionsArray[index].cssKeyB = '';
+        this.part5QuestionsArray[index].cssKeyD = 'correct';
+        break;
+    }
   }
 
   // load part5 data

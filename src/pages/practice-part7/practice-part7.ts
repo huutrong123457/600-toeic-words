@@ -20,7 +20,9 @@ export class PracticePart7 {
   paragraph2: string;
   public database: SQLite;
   public part7QuestionsArray: Array<Part7>
+  point: number = 0;
   length: number = 0;
+  showPoint: boolean = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -61,8 +63,89 @@ export class PracticePart7 {
     });
   }
 
-  choose() {
+   doCheck() {
+    this.part7QuestionsArray.forEach(part => {
+      if (part.keyChoose === part.Answer) {
+        this.point++;
+        //set css when true
+        switch (part.Answer) {
+          case 'A':
+            part.cssKeyA = 'correct';
+            break;
+          case 'B':
+            part.cssKeyB = 'correct';
+            break;
+          case 'C':
+            part.cssKeyC = 'correct';
+            break;
+          case 'D':
+            part.cssKeyD = 'correct';
+            break;
+        }
+      } else {
+        //set css when false
+        switch (part.Answer) {
+          case 'A':
+            part.cssKeyA = 'correct';
+            break;
+          case 'B':
+            part.cssKeyB = 'correct';
+            break;
+          case 'C':
+            part.cssKeyC = 'correct';
+            break;
+          case 'D':
+            part.cssKeyD = 'correct';
+            break;
+        }
+        switch (part.keyChoose) {
+          case 'A':
+            part.cssKeyA = 'wrong';
+            break;
+          case 'B':
+            part.cssKeyB = 'wrong';
+            break;
+          case 'C':
+            part.cssKeyC = 'wrong';
+            break;
+          case 'D':
+            part.cssKeyD = 'wrong';
+            break;
+        }
+      }
+    });
+    this.showPoint = true;
 
+  }
+
+  choose(index, key) {
+    this.part7QuestionsArray[index].keyChoose = key;
+    switch (key) {
+      case 'A':
+        this.part7QuestionsArray[index].cssKeyA = 'correct';
+        this.part7QuestionsArray[index].cssKeyC = '';
+        this.part7QuestionsArray[index].cssKeyB = '';
+        this.part7QuestionsArray[index].cssKeyD = '';
+        break;
+      case 'B':
+        this.part7QuestionsArray[index].cssKeyB = 'correct';
+        this.part7QuestionsArray[index].cssKeyC = '';
+        this.part7QuestionsArray[index].cssKeyA = '';
+        this.part7QuestionsArray[index].cssKeyD = '';
+        break;
+      case 'C':
+        this.part7QuestionsArray[index].cssKeyC = 'correct';
+        this.part7QuestionsArray[index].cssKeyA = '';
+        this.part7QuestionsArray[index].cssKeyB = '';
+        this.part7QuestionsArray[index].cssKeyD = '';
+        break;
+      case 'D':
+        this.part7QuestionsArray[index].cssKeyC = '';
+        this.part7QuestionsArray[index].cssKeyA = '';
+        this.part7QuestionsArray[index].cssKeyB = '';
+        this.part7QuestionsArray[index].cssKeyD = 'correct';
+        break;
+    }
   }
 
   loadPart7Data(lessonSelectedID) {

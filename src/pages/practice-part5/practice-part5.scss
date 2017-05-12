@@ -41,9 +41,11 @@ page-practice-part5 {
     }
     .correct {
         color: blue;
+        font-weight: bold;
     }
     .wrong {
         color: red;
         text-decoration: line-through;
+        font-weight: bold;
     }
 }

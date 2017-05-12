@@ -24574,11 +24574,13 @@ page-practice-part1 ion-item {
 
 page-practice-part1 .correct {
   color: blue;
+  font-weight: bold;
 }
 
 page-practice-part1 .wrong {
   color: red;
   text-decoration: line-through;
+  font-weight: bold;
 }
 
 page-practice-part2 .container {
@@ -24630,11 +24632,13 @@ page-practice-part2 ion-item {
 
 page-practice-part2 .correct {
   color: blue;
+  font-weight: bold;
 }
 
 page-practice-part2 .wrong {
   color: red;
   text-decoration: line-through;
+  font-weight: bold;
 }
 
 page-practice-part2 .question {
@@ -24693,11 +24697,13 @@ page-practice-part3 ion-item {
 
 page-practice-part3 .correct {
   color: blue;
+  font-weight: bold;
 }
 
 page-practice-part3 .wrong {
   color: red;
   text-decoration: line-through;
+  font-weight: bold;
 }
 
 page-practice-part4 .container {
@@ -24749,11 +24755,13 @@ page-practice-part4 ion-item {
 
 page-practice-part4 .correct {
   color: blue;
+  font-weight: bold;
 }
 
 page-practice-part4 .wrong {
   color: red;
   text-decoration: line-through;
+  font-weight: bold;
 }
 
 page-practice-part5 .container {
@@ -24805,11 +24813,13 @@ page-practice-part5 ion-item {
 
 page-practice-part5 .correct {
   color: blue;
+  font-weight: bold;
 }
 
 page-practice-part5 .wrong {
   color: red;
   text-decoration: line-through;
+  font-weight: bold;
 }
 
 page-practice-part6 .container {
@@ -24868,11 +24878,13 @@ page-practice-part6 ion-item {
 
 page-practice-part6 .correct {
   color: blue;
+  font-weight: bold;
 }
 
 page-practice-part6 .wrong {
   color: red;
   text-decoration: line-through;
+  font-weight: bold;
 }
 
 page-practice-part7 .container {
@@ -24931,11 +24943,13 @@ page-practice-part7 ion-item {
 
 page-practice-part7 .correct {
   color: blue;
+  font-weight: bold;
 }
 
 page-practice-part7 .wrong {
   color: red;
   text-decoration: line-through;
+  font-weight: bold;
 }
 
 page-words-detail .word {
