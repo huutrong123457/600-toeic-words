@@ -19,7 +19,7 @@
             Correct({{point}}/{{length}})
         </div>
         <div class="paragraph" [innerHTML]='paragraph1 | safeHtml'></div>
-        <div class="paragraph" [innerHTML]='paragraph2 | safeHtml'></div>
+        <div *ngIf="paragraph2" class="paragraph" [innerHTML]='paragraph2 | safeHtml'></div>
         <div>
             <div class="part-content" *ngFor="let question of part7QuestionsArray; let i = index">
                 <h1 text-justify>{{ i+1 }}. {{question.Question}}</h1>
