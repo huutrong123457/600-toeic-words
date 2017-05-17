@@ -11,15 +11,19 @@
 </ion-header>
 <ion-content class="background">
     <div class="container">
+        <div class="direction">
+            <h2 text-justify>Read the following passage and choose the words from the selecting box</h2>
+        </div>
+        <div class="point" *ngIf="showPoint">
+            Correct(1/3)
+        </div>
         <div class="page-content">
-            <div id="questionText" *ngFor="let text of questionTextToArray;let i = index">
-                <p>{{text}}</p><span><select *ngIf="lastText!=i" [(ngModel)]="sbs" interface="action-sheet">
-                    <option value="1">Answers 1</option>
-                    <option value="2">Answers 2</option>
-                    <option value="3">Answers 3</option>
-                    <option value="4">Answers 4</option>
-                </select></span>
-            </div>
+            <p>
+                <span *ngFor="let text of questionTextToArray;let i = index">
+                    {{text}}<span><select *ngIf="lastText!=i" [(ngModel)]="sbs" interface="action-sheet">
+                    <option *ngFor="let word of wordArray;" value="word">{{word}}</option>
+                </select></span></span>
+            </p>
         </div>
     </div>
 </ion-content>

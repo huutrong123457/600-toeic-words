@@ -11,11 +11,13 @@ import { Lesson } from '../../models/lesson';
 export class WordInContextPage {
   selectedLesson: Lesson;
   questionTextToArray: string[];
+  wordArray: string[];
   lastText: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.selectedLesson = navParams.data;
     console.log(this.selectedLesson);
+    this.wordArray = ["abide by", "assurance", "specific", "test"];
     this.loadData();
   }
 

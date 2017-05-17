@@ -29,18 +29,9 @@ page-word-in-context {
         background-color: #ffffff;
         padding: 10px;
     }
-    #questionText,
-    #questionText p,
-    #questionText select {
-        display: inline;
-    }
-    #questionText p {
-        font-size: 1.2em;
+    p {
+        margin: 0!important;
         line-height: 120%;
         text-align: justify;
-    }
-    .test {
-        margin-left: 10px;
-        border: solid 1px black;
     }
 }

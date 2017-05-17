@@ -24973,21 +24973,10 @@ page-word-in-context .page-content {
   padding: 10px;
 }
 
-page-word-in-context #questionText,
-page-word-in-context #questionText p,
-page-word-in-context #questionText select {
-  display: inline;
-}
-
-page-word-in-context #questionText p {
-  font-size: 1.2em;
+page-word-in-context p {
+  margin: 0 !important;
   line-height: 120%;
   text-align: justify;
-}
-
-page-word-in-context .test {
-  margin-left: 10px;
-  border: solid 1px black;
 }
 
 page-words-detail .word {
