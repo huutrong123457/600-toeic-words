@@ -126,11 +126,13 @@ export class WordsDetail {
           } // end for loop get words
 
           loading.dismiss(); // disappear icon loading when done
+         
           this.slides.update();
+          
           setTimeout(() => {
             this.slides.slideTo(this.index);
             this.play(this.lstKey[this.index]);
-          }, 200);
+          }, 10);
         }
         else { // when data is empty
           loading.dismiss(); // disappear icon loading when done

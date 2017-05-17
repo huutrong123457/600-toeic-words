@@ -10,6 +10,7 @@ import { PracticePart4 } from '../practice-part4/practice-part4';
 import { PracticePart5 } from '../practice-part5/practice-part5';
 import { PracticePart6 } from '../practice-part6/practice-part6';
 import { PracticePart7 } from '../practice-part7/practice-part7';
+import { WordsInContext } from '../words-in-context/words-in-context';
 
 @Component({
   selector: 'page-pratice-parts',
@@ -22,6 +23,10 @@ export class PracticeParts {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // get selected lesson from homePage
     this.selectedLesson = navParams.data;
+  }
+
+  goToWordsInContextPage(){
+    this.navCtrl.parent.parent.push(WordsInContext, this.selectedLesson);
   }
 
   ionViewDidLoad() {
