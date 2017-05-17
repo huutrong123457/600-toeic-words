@@ -25011,3 +25011,83 @@ page-words-detail .header {
 page-words-detail ion-slides {
   height: initial;
 }
+
+page-words-in-context .container {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: #E1E2E1;
+}
+
+page-words-in-context .background {
+  background-color: #E1E2E1 !important;
+}
+
+page-words-in-context .direction h2 {
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  background-color: #ffffff;
+}
+
+page-words-in-context .point ion-item {
+  background-color: #ffffff;
+  font-style: italic;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: red;
+}
+
+page-words-in-context ion-lable {
+  position: relative;
+}
+
+page-words-in-context .point .text {
+  position: absolute;
+  top: 30%;
+  display: inline-block;
+}
+
+page-words-in-context .point button {
+  float: right;
+}
+
+page-words-in-context .page-content {
+  margin-top: 10px;
+  background-color: #ffffff;
+  padding: 10px;
+}
+
+page-words-in-context p {
+  margin: 0 !important;
+  font-size: 1.1em;
+  line-height: 120%;
+  text-align: justify;
+}
+
+page-words-in-context select {
+  background-color: #ffffff;
+  border: 1px solid gray;
+  border-radius: 3px;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 3px;
+  margin-top: 3px;
+}
+
+page-words-in-context .text {
+  line-height: 150%;
+}
+
+page-words-in-context .correct {
+  color: blue;
+}
+
+page-words-in-context .wrong {
+  color: red;
+  text-decoration: line-through;
+}
+
+page-words-in-context .invalid {
+  border: 2px solid red;
+}

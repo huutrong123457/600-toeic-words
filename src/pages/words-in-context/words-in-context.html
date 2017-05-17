@@ -1,13 +1,43 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>words-in-context</ion-title>
+    <ion-navbar color="primary">
+        <ion-title>Word In Context</ion-title>
+        <ion-buttons end>
+            <button ion-button outline icon-left (click)="doCheck()">                
+                <ion-icon name="checkmark"></ion-icon>
+                Answers
+            </button>
+        </ion-buttons>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <ion-list>
-        <ion-item *ngFor="let key of wordInContextKeys">
-            {{key.OrderWord}} {{key.AnswerKey}}
-        </ion-item>
-    </ion-list>
+<ion-content class="background">
+    <div class="container">
+        <div class="direction">
+            <h2 text-justify>Read the following passage and choose the words from the selecting box</h2>
+        </div>
+        <div class="point" *ngIf="showPoint">
+            <ion-item>
+                <span class="text">Correct({{point}}/{{lastText}})</span>
+                <button ion-button item-end outline icon-left (click)='showAnswer()'>
+                    <ion-icon name='star'></ion-icon>
+                    Show Answers
+                </button>
+            </ion-item>
+        </div>
+        <div class="point" *ngIf="showErr">
+            <ion-item>
+                Please choose a word in the blanks!
+            </ion-item>
+        </div>
+        <div class="page-content">
+            <p>
+                <span class="text" *ngFor="let question of questionTextToArray;let i = index">{{question.text}} <span>
+                    <select [disabled] = 'showPoint' [ngClass]='question.cssClass'*ngIf="lastText!=i" [(ngModel)]="question.keyChoose">
+                    <option *ngFor = "let key of  wordInContextKeys;" 
+                         [value]="key.AnswerKey">{{key.AnswerKey}}</option>
+                         <option selected="selected" disabled value=""></option>
+                </select></span></span>
+            </p>
+        </div>
+    </div>
 </ion-content>

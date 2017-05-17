@@ -1,3 +1,68 @@
 page-words-in-context {
-
+    .container {
+        margin-left: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        background-color: #E1E2E1;
+    }
+    .background {
+        background-color: #E1E2E1 !important;
+    }
+    .direction h2 {
+        padding: 10px;
+        font-style: italic;
+        font-size: 1.2em;
+        background-color: #ffffff;
+    }
+    .point ion-item {
+        background-color: #ffffff;
+        font-style: italic;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: red;
+    }
+    ion-lable {
+        position: relative;
+    }
+    .point .text {
+        position: absolute;
+        top: 30%;
+        display: inline-block;
+    }
+    .point button {
+        float: right;
+    }
+    .page-content {
+        margin-top: 10px;
+        background-color: #ffffff;
+        padding: 10px;
+    }
+    p {
+        margin: 0!important;
+        font-size: 1.1em;
+        line-height: 120%;
+        text-align: justify;
+    }
+    select {
+        background-color: #ffffff;
+        border: 1px solid gray;
+        border-radius: 3px;
+        font-weight: bold;
+        font-style: italic;
+        margin-bottom: 3px;
+        margin-top: 3px;
+    }
+    .text {
+        line-height: 150%;
+    }
+    .correct {
+        color: blue;
+    }
+    .wrong {
+        color: red;
+        text-decoration: line-through;
+    }
+    .invalid {
+        border: 2px solid red;
+    }
 }

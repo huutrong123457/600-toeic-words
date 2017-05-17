@@ -15,6 +15,12 @@ export class WordsInContext {
   selectedLesson: Lesson;
   wordInContextObj: WordsInContextQuestion;
   wordInContextKeys: Array<WordsInContextKey>;
+  questionTextToArray: Array<QuestionTextItem>;
+  lastText: number;
+  showPoint: boolean = false;
+  point: number = 0;
+  checkAnswer: boolean = false;
+  showErr: boolean = false;
 
   public database: SQLite;
 
@@ -33,11 +39,48 @@ export class WordsInContext {
         location: 'default'
       }).then((successed) => {
         this.loadWordsInContextLesson(this.selectedLesson.lessonID);
+
       }, (err) => {
         console.log("Error opening database: " + err);
         alert("Error opening database: " + err);
       });
     });
+  }
+
+  doCheck() {
+    let validCount = 0;
+    this.questionTextToArray.forEach(q => {
+      if (q.keyChoose.trim() == '') {
+        q.cssClass = 'invalid';
+        validCount++;
+      }
+    });
+    if (validCount != 1) {
+      this.showErr = true;
+      return;
+    }
+    this.showErr = false;
+    if (!this.checkAnswer) {
+      for (let i = 0; i < this.questionTextToArray.length - 1; i++) {
+        let key = this.wordInContextObj.keys[i].AnswerKey;
+        if (this.questionTextToArray[i].keyChoose == key) {
+          this.questionTextToArray[i].cssClass = 'correct';
+          this.point++;
+        } else {
+          this.questionTextToArray[i].cssClass = 'wrong';
+        }
+
+      }
+      this.checkAnswer = true;
+      this.showPoint = true;
+    }
+  }
+
+  showAnswer() {
+    for (let i = 0; i < this.questionTextToArray.length - 1; i++) {
+      this.questionTextToArray[i].keyChoose = this.wordInContextObj.keys[i].AnswerKey;
+      this.questionTextToArray[i].cssClass = 'correct';
+    }
   }
 
   ionViewDidLoad() {
@@ -62,6 +105,16 @@ export class WordsInContext {
             QuestionText: data.rows.item(0).QuestionText,
             keys: []
           }
+
+          let tempArray = this.wordInContextObj.QuestionText.split('|');
+          this.questionTextToArray = [];
+          for (let q in tempArray) {
+            let questiemItem: QuestionTextItem =
+              { text: tempArray[q], keyChoose: '', cssClass: '' };
+            this.questionTextToArray.push(questiemItem);
+          }
+          this.lastText = this.questionTextToArray.length - 1;
+
           this.getKeysData(this.wordInContextObj);
           this.wordInContextKeys = this.wordInContextObj.keys;
           loading.dismiss(); // disappear icon loading when done
@@ -95,4 +148,10 @@ export class WordsInContext {
     });
   }
 
+}
+
+interface QuestionTextItem {
+  text: string;
+  keyChoose: string;
+  cssClass: string;
 }
