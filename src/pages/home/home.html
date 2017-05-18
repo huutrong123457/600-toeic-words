@@ -15,11 +15,17 @@
 </ion-header>
 
 <ion-content>
-    <div (click)="goToLessonTabs(lesson)" *ngFor="let lesson of lessons" class="card-background-page">
-        <ion-card>
-            <img src="{{lesson.linkImg}}" />
-            <div class="card-title">{{lesson.lesson}}</div>
-        </ion-card>
-    </div>
-
+    <ion-grid>
+        <ion-row>
+            <ion-col (click)="goToLessonTabs(lesson)" *ngFor="let lesson of lessons" col-6 col-sm-6 col-md-4 col-lg-4>
+                <div [style.background-image]="'url(' + lesson.linkImg + ')'" class="background">
+                    <div class="transbox">
+                        <div class="card-title">
+                            {{lesson.lesson}}
+                        </div>
+                    </div>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 </ion-content>
