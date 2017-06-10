@@ -8,6 +8,7 @@ import { LessonTabs } from '../pages/lesson-tabs/lesson-tabs';
 import { WordsList } from '../pages/words-list/words-list';
 import { PracticeParts } from '../pages/practice-parts/pratice-parts';
 import { GamesList } from '../pages/games-list/games-list';
+import { WordMatchingPage } from '../pages/word-matching/word-matching';
 
 import { WordsDetail } from '../pages/words-detail/words-detail';
 import { PracticePart1 } from '../pages/practice-part1/practice-part1';
@@ -36,6 +37,7 @@ import { HttpModule } from '@angular/http'
     WordsList,
     PracticeParts,
     GamesList,
+    WordMatchingPage,
     WordsDetail,
     PracticePart1,
     PracticePart2,
@@ -60,6 +62,7 @@ import { HttpModule } from '@angular/http'
     WordsList,
     PracticeParts,
     GamesList,
+    WordMatchingPage,
     WordsDetail,
     PracticePart1,
     PracticePart2,

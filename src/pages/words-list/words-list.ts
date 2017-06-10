@@ -36,7 +36,7 @@ export class WordsList {
         name: 'toeic-voca.db',
         location: 'default'
       }).then((successed) => {
-        this.loadWordsData(this.selectedLesson.lessonID)  // load data when open database succefully
+        this.loadWordsData(this.selectedLesson.lessonID);  // load data when open database succefully
       }, (err) => {
         console.log("Error opening database: " + err);
         alert("Error opening database: " + err);

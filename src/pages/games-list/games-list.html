@@ -4,6 +4,7 @@
 </ion-header>
 
 <ion-content>
+    <!--
     <ion-card>
         <img src="https://placeimg.com/200/150/nature" />
         <ion-card-content>
@@ -35,6 +36,8 @@
             </ion-col>
         </ion-row>
     </ion-card>
+    -->
+
     <ion-card>
         <img src="https://placeimg.com/200/150/people" />
         <ion-card-content>
@@ -47,22 +50,22 @@
         </ion-card-content>
         <ion-row no-padding>
             <ion-col>
-                <button ion-button clear small color="danger" icon-left>
-          <ion-icon name='game-controller-b'></ion-icon>
-          Play
-        </button>
+                <button ion-button clear small color="danger" icon-left (click)="goToWordMatchingGame()">
+                    <ion-icon name='game-controller-b'></ion-icon>
+                        Play
+                </button>
             </ion-col>
             <ion-col text-center>
                 <button ion-button clear small color="danger" icon-left>
-          <ion-icon name='book'></ion-icon>
-          Guide
-        </button>
+                    <ion-icon name='book'></ion-icon>
+                        Guide
+                </button>
             </ion-col>
             <ion-col text-right>
                 <button ion-button clear small color="danger" icon-left>
-          <ion-icon name='trophy'></ion-icon>
-          Score
-        </button>
+                    <ion-icon name='trophy'></ion-icon>
+                    Score
+                </button>
             </ion-col>
         </ion-row>
     </ion-card>
