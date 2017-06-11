@@ -111,7 +111,6 @@ export class WordMatchingPage {
       }
 
       indexWord2 = indexWord1;
-
       while (indexWord2 == currentIndex || indexWord2 == indexWord1) {
         indexWord2 = this.createRandomNumber(0, 11);
       }
