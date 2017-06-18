@@ -21,6 +21,9 @@
         <div *ngFor="let question of part2Array; let i = index">
             <div class="part-content">
                 <h1 text-justify>Question {{i+1}}</h1>
+                <ion-item *ngIf='question.keyQuestion'>
+                    <h2 class="question" text-wrap text-left>{{question.Question}}</h2>
+                </ion-item>
                 <ion-navbar color="primary">
                     <ion-buttons left>
                         <button class="btn-play" large ion-button color="light" (click)="playAudio(i)" clear icon-only>
@@ -34,26 +37,23 @@
                     </ion-range>
                 </ion-navbar>
                 <ion-list>
-                    <ion-item *ngIf='question.keyQuestion'>
-                        <h2 class="question" text-wrap text-justify>{{question.Question}}</h2>
-                    </ion-item>
                     <ion-item (click)="choose(i, 'A')">
                         <ion-avatar item-left>
                             <img src="assets/icon/ic_a.png">
                         </ion-avatar>
-                        <h2 [ngClass]="question.cssKeyA">{{question.keyA}}</h2>
+                        <h2 [ngClass]="question.cssKeyA" text-wrap>{{question.keyA}}</h2>
                     </ion-item>
                     <ion-item (click)="choose(i, 'B')">
                         <ion-avatar item-left>
                             <img src="assets/icon/ic_b.PNG">
                         </ion-avatar>
-                        <h2 [ngClass]="question.cssKeyB">{{question.keyB}}</h2>
+                        <h2 [ngClass]="question.cssKeyB" text-wrap>{{question.keyB}}</h2>
                     </ion-item>
                     <ion-item (click)="choose(i, 'C')">
                         <ion-avatar item-left>
                             <img src="assets/icon/ic_c.PNG">
                         </ion-avatar>
-                        <h2 [ngClass]="question.cssKeyC">{{question.keyC}}</h2>
+                        <h2 [ngClass]="question.cssKeyC" text-wrap>{{question.keyC}}</h2>
                     </ion-item>
                 </ion-list>
             </div>

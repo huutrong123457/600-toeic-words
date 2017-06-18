@@ -19,7 +19,7 @@
         </div>
         <div>
             <div class="part-content" *ngFor="let question of part5QuestionsArray; let i = index">
-                <h1 text-justify>{{i+1}}. {{question.Question}}.</h1>
+                <h1 text-left>{{i+1}}. {{question.Question}}.</h1>
                 <ion-list>
                     <ion-item (click)='choose(i, "A")'>
                         <ion-avatar item-left>

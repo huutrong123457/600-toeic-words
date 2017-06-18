@@ -1,6 +1,6 @@
 page-words-detail {
     .word {
-        font-size: 2em;
+        font-size: 1.75em;
         font-weight: bold;
         display: flex;
         align-items: center;
@@ -8,6 +8,7 @@ page-words-detail {
         margin-right: 10px;
     }
     .mean-img {
+        margin-top: 5px;
         width: 100%;
         min-height: 200px;
         max-height: 200px;
@@ -17,30 +18,44 @@ page-words-detail {
         margin-right: 10px;
     }
     .phienam {
-        margin-top: 10px;
+        margin-top: 0px;
+        margin-bottom: 5px;
         font-size: 1.25em;
         font-weight: bold;
         color: rebeccapurple;
     }
     .mean-text {
-        font-size: 1.4em;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        font-size: 1.2em;
         font-style: italic;
         font-weight: bold;
     }
     .example p {
+        margin-top: 5px;
+        margin-bottom: 5px;
         font-size: 1.1em;
     }
     .example p:first-child {
+        margin-top: 5px;
+        margin-bottom: 5px;
         color: #005D53;
-        font-size: 1.25em;
+        font-size: 1.2em;
         font-weight: bold;
     }
     .families p {
-        font-size: 1.25em;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        font-size: 1.2em;
         font-weight: bold;
     }
     .header {
         color: #005D53;
+    }
+    .div-card {
+        margin: 10px;
+        border: 0px;
+        box-shadow: none;
     }
     ion-slides {
         height: initial;

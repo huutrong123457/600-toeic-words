@@ -24631,7 +24631,7 @@ page-practice-part2 h1 {
   font-size: 1.4em;
   font-weight: bold;
   padding-top: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 page-practice-part2 ion-item {
@@ -24651,7 +24651,8 @@ page-practice-part2 .wrong {
 
 page-practice-part2 .question {
   color: blue;
-  font-size: 1em;
+  font-weight: bold;
+  font-size: 1.1em;
   font-style: italic;
   margin-right: 0 !important;
 }
@@ -24961,7 +24962,7 @@ page-practice-part7 .wrong {
 }
 
 page-words-detail .word {
-  font-size: 2em;
+  font-size: 1.75em;
   font-weight: bold;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -24974,6 +24975,7 @@ page-words-detail .word {
 }
 
 page-words-detail .mean-img {
+  margin-top: 5px;
   width: 100%;
   min-height: 200px;
   max-height: 200px;
@@ -24985,35 +24987,50 @@ page-words-detail .row {
 }
 
 page-words-detail .phienam {
-  margin-top: 10px;
+  margin-top: 0px;
+  margin-bottom: 5px;
   font-size: 1.25em;
   font-weight: bold;
   color: rebeccapurple;
 }
 
 page-words-detail .mean-text {
-  font-size: 1.4em;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-size: 1.2em;
   font-style: italic;
   font-weight: bold;
 }
 
 page-words-detail .example p {
+  margin-top: 5px;
+  margin-bottom: 5px;
   font-size: 1.1em;
 }
 
 page-words-detail .example p:first-child {
+  margin-top: 5px;
+  margin-bottom: 5px;
   color: #005D53;
-  font-size: 1.25em;
+  font-size: 1.2em;
   font-weight: bold;
 }
 
 page-words-detail .families p {
-  font-size: 1.25em;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 1.2em;
   font-weight: bold;
 }
 
 page-words-detail .header {
   color: #005D53;
+}
+
+page-words-detail .div-card {
+  margin: 10px;
+  border: 0px;
+  box-shadow: none;
 }
 
 page-words-detail ion-slides {

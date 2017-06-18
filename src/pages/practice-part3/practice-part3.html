@@ -21,31 +21,31 @@
         </div>
         <div *ngFor="let question of part3QuestionsArray; let i = index">
             <div class="part-content">
-                <h1 text-justify>{{i + 1}}. {{question.Question}}</h1>
+                <h1 text-left>{{i + 1}}. {{question.Question}}</h1>
                 <ion-list>
                     <ion-item (click)='choose(i, "A")'>
                         <ion-avatar item-left>
                             <img src="assets/icon/ic_a.png">
                         </ion-avatar>
-                        <h2 text-wrap text-justify [ngClass]="question.cssKeyA">{{question.A}}</h2>
+                        <h2 text-wrap text-left [ngClass]="question.cssKeyA">{{question.A}}</h2>
                     </ion-item>
                     <ion-item (click)='choose(i, "B")'>
                         <ion-avatar item-left>
                             <img src="assets/icon/ic_b.PNG">
                         </ion-avatar>
-                        <h2 text-wrap text-justify [ngClass]="question.cssKeyB">{{question.B}}</h2>
+                        <h2 text-wrap text-left [ngClass]="question.cssKeyB">{{question.B}}</h2>
                     </ion-item>
                     <ion-item (click)='choose(i, "C")'>
                         <ion-avatar item-left>
                             <img src="assets/icon/ic_c.PNG">
                         </ion-avatar>
-                        <h2 text-wrap text-justify [ngClass]="question.cssKeyC">{{question.C}}</h2>
+                        <h2 text-wrap text-left [ngClass]="question.cssKeyC">{{question.C}}</h2>
                     </ion-item>
                     <ion-item (click)='choose(i, "D")'>
                         <ion-avatar item-left>
                             <img src="assets/icon/ic_d.PNG">
                         </ion-avatar>
-                        <h2 text-wrap text-justify [ngClass]="question.cssKeyD">{{question.D}}</h2>
+                        <h2 text-wrap text-left [ngClass]="question.cssKeyD">{{question.D}}</h2>
                     </ion-item>
                 </ion-list>
             </div>

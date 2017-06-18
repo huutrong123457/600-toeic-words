@@ -131,8 +131,9 @@ export class WordsDetail {
           
           setTimeout(() => {
             this.slides.slideTo(this.index);
+            
             this.play(this.lstKey[this.index]);
-          }, 10);
+          }, 100);
         }
         else { // when data is empty
           loading.dismiss(); // disappear icon loading when done

@@ -6,25 +6,25 @@
 <ion-content>
     <ion-slides (ionSlideNextEnd)="next()" (ionSlidePrevEnd)="pre()">
         <ion-slide *ngFor="let word of listWords">
-            <ion-card>
+            <div class="div-card">
                 <div class="word">
                     <span>{{word.word}} ({{word.type}})</span>
                     <button color="danger" ion-button large clear icon-only (click)="playAudio(word)">
-                <ion-icon name="volume-up"></ion-icon>              
-            </button>
-                </div>
-                <div class="row">
-                    <img class="mean-img" src="{{word.linkImg}}" />
+                        <ion-icon name="volume-up"></ion-icon>              
+                    </button>
                 </div>
                 <div class="row">
                     <p class="phienam">{{word.phienAm}}</p>
                 </div>
                 <div class="row">
-                    <p class="mean-text" text-justify>{{word.meaning}}</p>
+                    <img class="mean-img" src="{{word.linkImg}}" />
+                </div>
+                <div class="row">
+                    <p class="mean-text" text-left>{{word.meaning}}</p>
                 </div>
                 <div class="row example">
                     <p>Examples:</p>
-                    <p *ngFor="let example of word.examples" text-justify>&#45; {{example.sentence}}</p>
+                    <p *ngFor="let example of word.examples" text-left>&#45; {{example.sentence}}</p>
                 </div>
                 <div class="row families" *ngIf="word.families[0]">
                     <p class="header">Words Families:</p>
@@ -33,7 +33,7 @@
                     <p>&#45; {{word.word}} ({{word.type}})</p>
                     <div text-justify> <b><i>Eg.</i></b> {{word.example}} </div>
                 </div>
-            </ion-card>
+            </div>
         </ion-slide>
     </ion-slides>
 </ion-content>
