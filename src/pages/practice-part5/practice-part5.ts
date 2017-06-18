@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, LoadingController, Platform, Content } from 'ionic-angular';
 import { Lesson } from '../../models/lesson';
 import { Part5 } from '../../models/part5';
 
@@ -11,7 +11,7 @@ import { SQLite } from 'ionic-native';
   templateUrl: 'practice-part5.html'
 })
 export class PracticePart5 {
-
+  @ViewChild(Content) content: Content;
   public database: SQLite;
   public part5QuestionsArray: Array<Part5>; // 6 questions part5
   selectedLesson: Lesson;
@@ -25,7 +25,7 @@ export class PracticePart5 {
     public platform: Platform) {
     // get selectedLesson
     this.selectedLesson = navParams.data;
-     this.database = new SQLite();
+    this.database = new SQLite();
     // when platform ready-> open DB and load data from words table in db
     platform.ready().then(() => {
       this.database.openDatabase({
@@ -41,8 +41,13 @@ export class PracticePart5 {
     );
   } // end constructor
 
-    doCheck() {
+  doCheck() {
     this.point = 0;
+    this.content.scrollToTop(500).then((success) => {
+      console.log("Part5 scrollToTop completed!");
+    }, (error) => {
+      console.log("Part5 scrollToTop failed!");
+    });
     this.part5QuestionsArray.forEach(part => {
       if (part.keyChoose === part.Answer) {
         this.point++;
@@ -141,7 +146,7 @@ export class PracticePart5 {
       this.database.executeSql("SELECT * FROM part5s WHERE LessonID=" + lessonSelectedID, []).then((part5s) => {
         this.part5QuestionsArray = [];
         if (part5s.rows.length > 0) {
-         
+
           this.length = part5s.rows.length;
           for (var i = 0; i < part5s.rows.length; i++) {
             // temporary variable store one question in part4

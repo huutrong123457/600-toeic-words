@@ -1,5 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
-import { NavController, NavParams, LoadingController, Platform } from 'ionic-angular';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { NavController, NavParams, LoadingController, Platform, Content } from 'ionic-angular';
 import { Lesson } from '../../models/lesson';
 import { Part3 } from '../../models/part3';
 
@@ -11,7 +11,7 @@ import { MediaPlugin, MediaObject } from '@ionic-native/media'
   templateUrl: 'practice-part3.html'
 })
 export class PracticePart3 implements OnDestroy {
-
+  @ViewChild(Content) content: Content;
 
   public database: SQLite;
   public part3QuestionsArray: Array<Part3>; // 3 questions part3
@@ -49,6 +49,11 @@ export class PracticePart3 implements OnDestroy {
 
   doCheck() {
     this.point = 0;
+    this.content.scrollToTop(500).then((success) => {
+      console.log("Part3 scrollToTop completed!");
+    }, (error) => {
+      console.log("Part3 scrollToTop failed!");
+    });
     this.part3QuestionsArray.forEach(part => {
       if (part.keyChoose === part.Answer) {
         this.point++;

@@ -1,5 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
-import { NavController, NavParams, LoadingController, Platform } from 'ionic-angular';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { NavController, NavParams, LoadingController, Platform, Content } from 'ionic-angular';
 
 import { Lesson } from '../../models/lesson';
 import { Part2 } from '../../models/part2';
@@ -12,6 +12,7 @@ import { MediaPlugin } from '@ionic-native/media';
   templateUrl: 'practice-part2.html'
 })
 export class PracticePart2 implements OnDestroy {
+  @ViewChild(Content) content: Content;
 
   public database: SQLite;
   public part2Array: Array<Part2>; // 2 questions part2
@@ -65,6 +66,11 @@ export class PracticePart2 implements OnDestroy {
 
   doCheck() {
     this.point = 0;
+    this.content.scrollToTop(500).then((success) => {
+      console.log("Part2 scrollToTop completed!");
+    }, (error) => {
+      console.log("Part2 scrollToTop failed!");
+    });
     this.part2Array.forEach(part => {
       if (part.keyChoose === part.Answer) {
         this.point++;
@@ -114,6 +120,14 @@ export class PracticePart2 implements OnDestroy {
   }
 
   playAudio(index) {
+    // stop current audio
+    this.part2Array.forEach(part => {
+      if (part.media != undefined && part.isPlay == true) {
+        part.media.stop();
+        part.media.release();
+      }
+    });
+
     if (!this.part2Array[index].isPlay) {
       this.part2Array[index].media = this.media.create('/android_asset/www/assets/audio/practices/' + this.part2Array[index].urlAudio + '.mp3',
         (status) => console.log(status),

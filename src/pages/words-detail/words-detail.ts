@@ -52,6 +52,7 @@ export class WordsDetail {
       this.startIndex = -1;
       return;
     }
+    this.stop(this.lstKey[this.index]);
     this.index++;
     this.play(this.lstKey[this.index]);
   }
@@ -61,11 +62,12 @@ export class WordsDetail {
     if (this.index == 0) {
       return;
     }
+    this.stop(this.lstKey[this.index]);
     this.index--;
     this.play(this.lstKey[this.index]);
   }
 
-  playAudio(word) {
+  playAudioClickHandler(word) {
     this.play(word.word);
   }
 
@@ -73,6 +75,11 @@ export class WordsDetail {
   play(id: string) {
     this.nativeAudio.play(id)
       .then(() => { console.log('success') }, (error) => { console.log(error) });
+  }
+
+  stop(id: string) {
+    this.nativeAudio.stop(id)
+      .then(() => { console.log('stop success') }, (error) => { console.log(error) });
   }
 
   //get sound in temp memory
@@ -126,12 +133,12 @@ export class WordsDetail {
           } // end for loop get words
 
           loading.dismiss(); // disappear icon loading when done
-         
+
           this.slides.update();
-          
+
           setTimeout(() => {
             this.slides.slideTo(this.index);
-            
+
             this.play(this.lstKey[this.index]);
           }, 100);
         }

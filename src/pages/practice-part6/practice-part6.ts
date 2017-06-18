@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, LoadingController, Platform, Content } from 'ionic-angular';
 
 import { Part6 } from '../../models/part6';
 
@@ -15,10 +15,11 @@ import { Lesson } from '../../models/lesson';
   templateUrl: 'practice-part6.html'
 })
 export class PracticePart6 {
+  @ViewChild(Content) content: Content;
 
   selectedLesson: Lesson;
   public database: SQLite;
-  public part6QuestionsArray: Array<Part6>; 
+  public part6QuestionsArray: Array<Part6>;
   paragraph: string;
   point: number = 0;
   length: number = 0;
@@ -28,7 +29,7 @@ export class PracticePart6 {
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public platform: Platform, private http: Http) {
-        // get selectedLesson
+    // get selectedLesson
     this.selectedLesson = navParams.data;
     this.database = new SQLite();
     // when platform ready-> open DB and load data from words table in db
@@ -47,9 +48,9 @@ export class PracticePart6 {
     );
   }
 
-  loadParagraph(src: string){
+  loadParagraph(src: string) {
     this.http.get(src).map(res => res.text()).subscribe(data => {
-        this.paragraph = data;
+      this.paragraph = data;
     }, err => {
       console.log(err);
     });
@@ -57,6 +58,11 @@ export class PracticePart6 {
 
   doCheck() {
     this.point = 0;
+    this.content.scrollToTop(500).then((success) => {
+      console.log("Part6 scrollToTop completed!");
+    }, (error) => {
+      console.log("Part6 scrollToTop failed!");
+    });
     this.part6QuestionsArray.forEach(part => {
       if (part.keyChoose === part.Answer) {
         this.point++;
@@ -141,7 +147,7 @@ export class PracticePart6 {
     }
   }
 
-   loadPart6Data(lessonSelectedID) {
+  loadPart6Data(lessonSelectedID) {
     // check if array question part6 is empty
     if (!this.part6QuestionsArray) {
       // using loading controller to create loading icon while loading data
@@ -176,7 +182,7 @@ export class PracticePart6 {
           } // end for loop get question in part5
           loading.dismiss(); // disappear icon loading when done
           // load paragraph
-          this.loadParagraph('assets/html/'+this.part6QuestionsArray[0].urlParagraph+'.html');
+          this.loadParagraph('assets/html/' + this.part6QuestionsArray[0].urlParagraph + '.html');
         }
         else { // when data is empty
           loading.dismiss(); // disappear icon loading when done

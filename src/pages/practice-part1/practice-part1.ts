@@ -1,5 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
-import { NavController, NavParams, LoadingController, Platform } from 'ionic-angular';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
+import { NavController, NavParams, LoadingController, Platform, Content } from 'ionic-angular';
 
 import { Lesson } from '../../models/lesson';
 import { Part1 } from '../../models/part1';
@@ -13,7 +13,7 @@ import { SQLite } from 'ionic-native';
   templateUrl: 'practice-part1.html',
 })
 export class PracticePart1 implements OnDestroy {
-
+  @ViewChild(Content) content: Content;
 
   public database: SQLite;
   part1Object: Part1;
@@ -78,6 +78,13 @@ export class PracticePart1 implements OnDestroy {
 
   doCheck() {
     this.point = 0;
+
+    this.content.scrollToTop(500).then((success) => {
+      console.log("Part1 scrollToTop completed!");
+    }, (error) => {
+      console.log("Part1 scrollToTop failed!");
+    });
+
     console.log(this.keyChoose, this.Answer);
     if (this.keyChoose === this.Answer) {
       this.point++;
@@ -129,7 +136,7 @@ export class PracticePart1 implements OnDestroy {
           break;
       }
     }
-    this.showPoint =true;
+    this.showPoint = true;
     this.keyA = this.A;
     this.keyB = this.B;
     this.keyC = this.C;

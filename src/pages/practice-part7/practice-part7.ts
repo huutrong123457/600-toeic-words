@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, NavParams, LoadingController, Platform, Content } from 'ionic-angular';
 
 import { Lesson } from '../../models/lesson';
 import { Http } from '@angular/http';
@@ -14,6 +14,7 @@ import 'rxjs/add/operator/map';
   templateUrl: 'practice-part7.html'
 })
 export class PracticePart7 {
+  @ViewChild(Content) content: Content;
 
   selectedLesson: Lesson;
   paragraph1: string;
@@ -30,7 +31,7 @@ export class PracticePart7 {
     public platform: Platform, private http: Http) {
     // get selectedLesson
     this.selectedLesson = navParams.data;
-     this.database = new SQLite();
+    this.database = new SQLite();
     // when platform ready-> open DB and load data from words table in db
     platform.ready().then(() => {
       this.database.openDatabase({
@@ -44,7 +45,7 @@ export class PracticePart7 {
       });
     }
     );
-   
+
   }
 
   loadParagraph1(src: string) {
@@ -63,8 +64,13 @@ export class PracticePart7 {
     });
   }
 
-   doCheck() {
+  doCheck() {
     this.point = 0;
+    this.content.scrollToTop(500).then((success) => {
+      console.log("Part7 scrollToTop completed!");
+    }, (error) => {
+      console.log("Part7 scrollToTop failed!");
+    });
     this.part7QuestionsArray.forEach(part => {
       if (part.keyChoose === part.Answer) {
         this.point++;
@@ -186,8 +192,8 @@ export class PracticePart7 {
           } // end for loop get question in part7
           loading.dismiss(); // disappear icon loading when done
           // load paragraph 1 & 2
-          this.loadParagraph1('assets/html/'+this.part7QuestionsArray[0].urlParagraph1+'.html');
-          this.loadParagraph2('assets/html/'+this.part7QuestionsArray[0].urlParagraph2+'.html');
+          this.loadParagraph1('assets/html/' + this.part7QuestionsArray[0].urlParagraph1 + '.html');
+          this.loadParagraph2('assets/html/' + this.part7QuestionsArray[0].urlParagraph2 + '.html');
         }
         else { // when data is empty
           loading.dismiss(); // disappear icon loading when done
