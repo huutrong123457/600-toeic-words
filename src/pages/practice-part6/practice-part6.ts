@@ -56,6 +56,7 @@ export class PracticePart6 {
   }
 
   doCheck() {
+    this.point = 0;
     this.part6QuestionsArray.forEach(part => {
       if (part.keyChoose === part.Answer) {
         this.point++;

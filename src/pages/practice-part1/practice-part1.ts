@@ -77,6 +77,7 @@ export class PracticePart1 implements OnDestroy {
   }
 
   doCheck() {
+    this.point = 0;
     console.log(this.keyChoose, this.Answer);
     if (this.keyChoose === this.Answer) {
       this.point++;

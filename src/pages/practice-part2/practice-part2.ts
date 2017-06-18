@@ -64,6 +64,7 @@ export class PracticePart2 implements OnDestroy {
   }
 
   doCheck() {
+    this.point = 0;
     this.part2Array.forEach(part => {
       if (part.keyChoose === part.Answer) {
         this.point++;
