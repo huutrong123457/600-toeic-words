@@ -46,5 +46,4 @@ export class PracticeParts {
         alert("No corrected part selected!");
     }
   }
-
 }

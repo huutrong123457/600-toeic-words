@@ -223,7 +223,6 @@ export class PracticePart3 implements OnDestroy {
     } else {
       str += ':' + sec;
     }
-
     return str;
   }
 
@@ -275,9 +274,7 @@ export class PracticePart3 implements OnDestroy {
     }
   } // end laod Part3Data
 
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad PracticePart3Page');
   }
-
 }

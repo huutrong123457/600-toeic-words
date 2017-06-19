@@ -41,9 +41,7 @@ export class WordsList {
         console.log("Error opening database: " + err);
         alert("Error opening database: " + err);
       });
-    }
-    );
-
+    });
   } // end constructor
 
   ionViewDidLoad() {
@@ -100,5 +98,4 @@ export class WordsList {
       });
     }
   } // end function getWordsData
-
 }

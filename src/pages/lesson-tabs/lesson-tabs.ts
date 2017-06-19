@@ -25,5 +25,4 @@ export class LessonTabs {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LessonTabs');
   }
-
 }

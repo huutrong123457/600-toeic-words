@@ -210,9 +210,7 @@ export class PracticePart6 {
     }
   } // end load Part6Data
 
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad PracticePart6Page');
   }
-
 }

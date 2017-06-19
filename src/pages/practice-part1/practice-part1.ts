@@ -95,7 +95,6 @@ export class PracticePart1 implements OnDestroy {
       console.log(this.keyChoose, this.Answer);
       if (this.keyChoose === this.Answer) {
         this.point++;
-        this.playSound(true);
         //set css when true
         switch (this.Answer) {
           case 'A':
@@ -112,7 +111,6 @@ export class PracticePart1 implements OnDestroy {
             break;
         }
       } else {
-        this.playSound(false);
         //set css when false
         switch (this.Answer) {
           case 'A':
@@ -180,18 +178,6 @@ export class PracticePart1 implements OnDestroy {
         this.cssKeyA = '';
         break;
     }
-  }
-
-  playSound(isTrue) {
-    /*const srcCorrect = 'assets/audio/correct.mp3';
-    const srcWrong = 'assets/audio/wrong.mp3';
-    if (isTrue) {
-      this.nativeAudio.preloadSimple('correct', srcCorrect);
-      this.nativeAudio.play('correct');
-    } else {
-      this.nativeAudio.preloadSimple('wrong', srcWrong);
-      this.nativeAudio.play('wrong');
-    }*/
   }
 
   playAudio() {

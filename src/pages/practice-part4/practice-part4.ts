@@ -224,7 +224,6 @@ export class PracticePart4 implements OnDestroy {
     } else {
       str += ':' + sec;
     }
-
     return str;
   }
 
@@ -279,5 +278,4 @@ export class PracticePart4 implements OnDestroy {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PracticePart4Page');
   }
-
 }

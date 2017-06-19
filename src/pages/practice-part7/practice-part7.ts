@@ -224,5 +224,4 @@ export class PracticePart7 {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PracticePart7Page');
   }
-
 }

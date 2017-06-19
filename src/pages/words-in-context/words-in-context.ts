@@ -147,7 +147,6 @@ export class WordsInContext {
       alert("error when get keys: " + error + " wordInContextID:" + wordInContextObj.ID); // disappear icon loading even if error
     });
   }
-
 }
 
 interface QuestionTextItem {

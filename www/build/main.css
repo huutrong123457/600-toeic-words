@@ -24581,7 +24581,7 @@ page-practice-part1 ion-item {
 }
 
 page-practice-part1 .correct {
-  color: blue;
+  color: green;
   font-weight: bold;
 }
 
@@ -24639,7 +24639,7 @@ page-practice-part2 ion-item {
 }
 
 page-practice-part2 .correct {
-  color: blue;
+  color: green;
   font-weight: bold;
 }
 
@@ -24705,7 +24705,7 @@ page-practice-part3 ion-item {
 }
 
 page-practice-part3 .correct {
-  color: blue;
+  color: green;
   font-weight: bold;
 }
 
@@ -24763,7 +24763,7 @@ page-practice-part4 ion-item {
 }
 
 page-practice-part4 .correct {
-  color: blue;
+  color: green;
   font-weight: bold;
 }
 
@@ -24821,7 +24821,7 @@ page-practice-part5 ion-item {
 }
 
 page-practice-part5 .correct {
-  color: blue;
+  color: green;
   font-weight: bold;
 }
 
@@ -24886,7 +24886,7 @@ page-practice-part6 ion-item {
 }
 
 page-practice-part6 .correct {
-  color: blue;
+  color: green;
   font-weight: bold;
 }
 
@@ -24951,7 +24951,7 @@ page-practice-part7 ion-item {
 }
 
 page-practice-part7 .correct {
-  color: blue;
+  color: green;
   font-weight: bold;
 }
 
@@ -25105,7 +25105,7 @@ page-words-in-context .text {
 }
 
 page-words-in-context .correct {
-  color: blue;
+  color: green;
 }
 
 page-words-in-context .wrong {

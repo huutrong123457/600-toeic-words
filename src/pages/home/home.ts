@@ -2,9 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, LoadingController, Platform } from 'ionic-angular';
 
 import {LessonTabs} from '../lesson-tabs/lesson-tabs';
-
 import { SQLite } from 'ionic-native';
-
 import { Lesson } from '../../models/lesson';
 
 @Component({
@@ -75,5 +73,4 @@ export class HomePage {
   goToLessonTabs(lesson){
     this.navCtrl.push(LessonTabs, lesson);
   }
-
 }

@@ -281,5 +281,4 @@ export class PracticePart2 implements OnDestroy {
   ionViewDidLoad() {
     console.log('ionViewDidLoad PracticePart2Page');
   }
-
 }

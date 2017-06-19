@@ -23,5 +23,4 @@ export class GamesList {
   ionViewDidLoad() {
     console.log('ionViewDidLoad GamesList');
   }
-
 }
