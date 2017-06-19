@@ -57,67 +57,81 @@ export class PracticePart6 {
   }
 
   doCheck() {
-    this.point = 0;
-    this.content.scrollToTop(500).then((success) => {
-      console.log("Part6 scrollToTop completed!");
-    }, (error) => {
-      console.log("Part6 scrollToTop failed!");
-    });
-    this.part6QuestionsArray.forEach(part => {
-      if (part.keyChoose === part.Answer) {
-        this.point++;
-        //set css when true
-        switch (part.Answer) {
-          case 'A':
-            part.cssKeyA = 'correct';
-            break;
-          case 'B':
-            part.cssKeyB = 'correct';
-            break;
-          case 'C':
-            part.cssKeyC = 'correct';
-            break;
-          case 'D':
-            part.cssKeyD = 'correct';
-            break;
+    if (!this.isAllQuestionWasChoosen()) {
+      alert("You have to answer all the questions!");
+    }
+    else {
+      this.point = 0;
+      this.content.scrollToTop(500).then((success) => {
+        console.log("Part6 scrollToTop completed!");
+      }, (error) => {
+        console.log("Part6 scrollToTop failed!");
+      });
+      this.part6QuestionsArray.forEach(part => {
+        if (part.keyChoose === part.Answer) {
+          this.point++;
+          //set css when true
+          switch (part.Answer) {
+            case 'A':
+              part.cssKeyA = 'correct';
+              break;
+            case 'B':
+              part.cssKeyB = 'correct';
+              break;
+            case 'C':
+              part.cssKeyC = 'correct';
+              break;
+            case 'D':
+              part.cssKeyD = 'correct';
+              break;
+          }
+        } else {
+          //set css when false
+          switch (part.Answer) {
+            case 'A':
+              part.cssKeyA = 'correct';
+              break;
+            case 'B':
+              part.cssKeyB = 'correct';
+              break;
+            case 'C':
+              part.cssKeyC = 'correct';
+              break;
+            case 'D':
+              part.cssKeyD = 'correct';
+              break;
+          }
+          switch (part.keyChoose) {
+            case 'A':
+              part.cssKeyA = 'wrong';
+              break;
+            case 'B':
+              part.cssKeyB = 'wrong';
+              break;
+            case 'C':
+              part.cssKeyC = 'wrong';
+              break;
+            case 'D':
+              part.cssKeyD = 'wrong';
+              break;
+          }
         }
-      } else {
-        //set css when false
-        switch (part.Answer) {
-          case 'A':
-            part.cssKeyA = 'correct';
-            break;
-          case 'B':
-            part.cssKeyB = 'correct';
-            break;
-          case 'C':
-            part.cssKeyC = 'correct';
-            break;
-          case 'D':
-            part.cssKeyD = 'correct';
-            break;
-        }
-        switch (part.keyChoose) {
-          case 'A':
-            part.cssKeyA = 'wrong';
-            break;
-          case 'B':
-            part.cssKeyB = 'wrong';
-            break;
-          case 'C':
-            part.cssKeyC = 'wrong';
-            break;
-          case 'D':
-            part.cssKeyD = 'wrong';
-            break;
-        }
-      }
-    });
-    this.showPoint = true;
+        part.isChoosen = false;
+      });
+      this.showPoint = true;
+    }
+  }
 
+  isAllQuestionWasChoosen(): boolean {
+    for (let i = 0; i < this.part6QuestionsArray.length; i++) {
+      if (!this.part6QuestionsArray[i].isChoosen)
+        return false;
+    }
+    return true;
   }
 
   choose(index, key) {
+    this.part6QuestionsArray[index].isChoosen = true;
     this.part6QuestionsArray[index].keyChoose = key;
     switch (key) {
       case 'A':
@@ -176,7 +190,8 @@ export class PracticePart6 {
               cssKeyB: '',
               cssKeyC: '',
               cssKeyD: '',
-              keyChoose: ''
+              keyChoose: '',
+              isChoosen: false
             }
             this.part6QuestionsArray.push(question);
           } // end for loop get question in part5

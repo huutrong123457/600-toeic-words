@@ -19,5 +19,6 @@ export interface Part2 {
     cssKeyB: string,
     cssKeyC: string, 
     isPlay: boolean,
-    media: any
+    media: any,
+    isChoosen: boolean
 }

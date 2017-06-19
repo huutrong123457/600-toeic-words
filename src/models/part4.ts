@@ -12,5 +12,6 @@ export  interface Part4 {
     cssKeyB: string,
     cssKeyC: string, 
     cssKeyD: string,
-    keyChoose: string
+    keyChoose: string,
+    isChoosen: boolean
 }

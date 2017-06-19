@@ -44,6 +44,7 @@ export class PracticePart2 implements OnDestroy {
   } // end constructor
 
   choose(index, key) {
+    this.part2Array[index].isChoosen = true;
     this.part2Array[index].keyChoose = key;
     switch (key) {
       case 'A':
@@ -64,59 +65,76 @@ export class PracticePart2 implements OnDestroy {
     }
   }
 
+  isAllQuestionWasChoosen(): boolean {
+    for (let i = 0; i < this.part2Array.length; i++) {
+      if (!this.part2Array[i].isChoosen)
+        return false;
+    }
+    return true;
+  }
+
   doCheck() {
-    this.point = 0;
-    this.content.scrollToTop(500).then((success) => {
-      console.log("Part2 scrollToTop completed!");
-    }, (error) => {
-      console.log("Part2 scrollToTop failed!");
-    });
-    this.part2Array.forEach(part => {
-      if (part.keyChoose === part.Answer) {
-        this.point++;
-        //set css when true
-        switch (part.Answer) {
-          case 'A':
-            part.cssKeyA = 'correct';
-            break;
-          case 'B':
-            part.cssKeyB = 'correct';
-            break;
-          case 'C':
-            part.cssKeyC = 'correct';
-            break;
+    if (!this.isAllQuestionWasChoosen()) {
+      alert("You have to answer all the questions!");
+    }
+    else {
+      this.point = 0;
+      this.content.scrollToTop(500).then((success) => {
+        console.log("Part2 scrollToTop completed!");
+      }, (error) => {
+        console.log("Part2 scrollToTop failed!");
+      });
+      // loop each question
+      this.part2Array.forEach(part => {
+
+        if (part.keyChoose === part.Answer) {
+          this.point++;
+          //set css when true
+          switch (part.Answer) {
+            case 'A':
+              part.cssKeyA = 'correct';
+              break;
+            case 'B':
+              part.cssKeyB = 'correct';
+              break;
+            case 'C':
+              part.cssKeyC = 'correct';
+              break;
+          }
+        } else {
+          //set css when false
+          switch (part.Answer) {
+            case 'A':
+              part.cssKeyA = 'correct';
+              break;
+            case 'B':
+              part.cssKeyB = 'correct';
+              break;
+            case 'C':
+              part.cssKeyC = 'correct';
+              break;
+          }
+          switch (part.keyChoose) {
+            case 'A':
+              part.cssKeyA = 'wrong';
+              break;
+            case 'B':
+              part.cssKeyB = 'wrong';
+              break;
+            case 'C':
+              part.cssKeyC = 'wrong';
+              break;
+          }
         }
-      } else {
-        //set css when false
-        switch (part.Answer) {
-          case 'A':
-            part.cssKeyA = 'correct';
-            break;
-          case 'B':
-            part.cssKeyB = 'correct';
-            break;
-          case 'C':
-            part.cssKeyC = 'correct';
-            break;
-        }
-        switch (part.keyChoose) {
-          case 'A':
-            part.cssKeyA = 'wrong';
-            break;
-          case 'B':
-            part.cssKeyB = 'wrong';
-            break;
-          case 'C':
-            part.cssKeyC = 'wrong';
-            break;
-        }
-      }
-      part.keyA = part.A;
-      part.keyB = part.B;
-      part.keyC = part.C;
-      part.keyQuestion = true;
-      this.showPoint = true;
-    });
+        part.keyA = part.A;
+        part.keyB = part.B;
+        part.keyC = part.C;
+        part.keyQuestion = true;
+        this.showPoint = true;
+
+        part.isChoosen = false;
+      });
+    }
   }
 
   playAudio(index) {
@@ -242,7 +260,8 @@ export class PracticePart2 implements OnDestroy {
               cssKeyB: '',
               cssKeyC: '',
               isPlay: false,
-              media: undefined
+              media: undefined,
+              isChoosen: false
             }
             this.part2Array.push(question);
           } // end for loop get question in part2s

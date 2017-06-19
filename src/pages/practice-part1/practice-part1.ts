@@ -45,6 +45,8 @@ export class PracticePart1 implements OnDestroy {
   length: number = 0;
   showPoint: boolean = false;
 
+  isAnswerChoosen: boolean = false;
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
@@ -77,73 +79,80 @@ export class PracticePart1 implements OnDestroy {
   }
 
   doCheck() {
-    this.point = 0;
-
-    this.content.scrollToTop(500).then((success) => {
-      console.log("Part1 scrollToTop completed!");
-    }, (error) => {
-      console.log("Part1 scrollToTop failed!");
-    });
-
-    console.log(this.keyChoose, this.Answer);
-    if (this.keyChoose === this.Answer) {
-      this.point++;
-      this.playSound(true);
-      //set css when true
-      switch (this.Answer) {
-        case 'A':
-          this.cssKeyA = 'correct';
-          break;
-        case 'B':
-          this.cssKeyB = 'correct';
-          break;
-        case 'C':
-          this.cssKeyC = 'correct';
-          break;
-        case 'D':
-          this.cssKeyD = 'correct';
-          break;
-      }
-    } else {
-      this.playSound(false);
-      //set css when false
-      switch (this.Answer) {
-        case 'A':
-          this.cssKeyA = 'correct';
-          break;
-        case 'B':
-          this.cssKeyB = 'correct';
-          break;
-        case 'C':
-          this.cssKeyC = 'correct';
-          break;
-        case 'D':
-          this.cssKeyD = 'correct';
-          break;
-      }
-      switch (this.keyChoose) {
-        case 'A':
-          this.cssKeyA = 'wrong';
-          break;
-        case 'B':
-          this.cssKeyB = 'wrong';
-          break;
-        case 'C':
-          this.cssKeyC = 'wrong';
-          break;
-        case 'D':
-          this.cssKeyD = 'wrong';
-          break;
-      }
+    if (!this.isAnswerChoosen) {
+      alert("You have to choose your answer!");
     }
-    this.showPoint = true;
-    this.keyA = this.A;
-    this.keyB = this.B;
-    this.keyC = this.C;
-    this.keyD = this.D;
+    else {
+      this.point = 0;
+      this.isAnswerChoosen = false;
+      // scroll the screen to top 
+      this.content.scrollToTop(500).then((success) => {
+        console.log("Part1 scrollToTop completed!");
+      }, (error) => {
+        console.log("Part1 scrollToTop failed!");
+      });
+
+      console.log(this.keyChoose, this.Answer);
+      if (this.keyChoose === this.Answer) {
+        this.point++;
+        this.playSound(true);
+        //set css when true
+        switch (this.Answer) {
+          case 'A':
+            this.cssKeyA = 'correct';
+            break;
+          case 'B':
+            this.cssKeyB = 'correct';
+            break;
+          case 'C':
+            this.cssKeyC = 'correct';
+            break;
+          case 'D':
+            this.cssKeyD = 'correct';
+            break;
+        }
+      } else {
+        this.playSound(false);
+        //set css when false
+        switch (this.Answer) {
+          case 'A':
+            this.cssKeyA = 'correct';
+            break;
+          case 'B':
+            this.cssKeyB = 'correct';
+            break;
+          case 'C':
+            this.cssKeyC = 'correct';
+            break;
+          case 'D':
+            this.cssKeyD = 'correct';
+            break;
+        }
+        switch (this.keyChoose) {
+          case 'A':
+            this.cssKeyA = 'wrong';
+            break;
+          case 'B':
+            this.cssKeyB = 'wrong';
+            break;
+          case 'C':
+            this.cssKeyC = 'wrong';
+            break;
+          case 'D':
+            this.cssKeyD = 'wrong';
+            break;
+        }
+      }
+      this.showPoint = true;
+      this.keyA = this.A;
+      this.keyB = this.B;
+      this.keyC = this.C;
+      this.keyD = this.D;
+    }
   }
 
   choose(key) {
+    this.isAnswerChoosen = true;
     this.keyChoose = key;
     switch (key) {
       case 'A':

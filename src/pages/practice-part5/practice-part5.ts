@@ -42,67 +42,81 @@ export class PracticePart5 {
   } // end constructor
 
   doCheck() {
-    this.point = 0;
-    this.content.scrollToTop(500).then((success) => {
-      console.log("Part5 scrollToTop completed!");
-    }, (error) => {
-      console.log("Part5 scrollToTop failed!");
-    });
-    this.part5QuestionsArray.forEach(part => {
-      if (part.keyChoose === part.Answer) {
-        this.point++;
-        //set css when true
-        switch (part.Answer) {
-          case 'A':
-            part.cssKeyA = 'correct';
-            break;
-          case 'B':
-            part.cssKeyB = 'correct';
-            break;
-          case 'C':
-            part.cssKeyC = 'correct';
-            break;
-          case 'D':
-            part.cssKeyD = 'correct';
-            break;
+    if (!this.isAllQuestionWasChoosen()) {
+      alert("You have to answer all the questions!");
+    }
+    else {
+      this.point = 0;
+      this.content.scrollToTop(500).then((success) => {
+        console.log("Part5 scrollToTop completed!");
+      }, (error) => {
+        console.log("Part5 scrollToTop failed!");
+      });
+      this.part5QuestionsArray.forEach(part => {
+        if (part.keyChoose === part.Answer) {
+          this.point++;
+          //set css when true
+          switch (part.Answer) {
+            case 'A':
+              part.cssKeyA = 'correct';
+              break;
+            case 'B':
+              part.cssKeyB = 'correct';
+              break;
+            case 'C':
+              part.cssKeyC = 'correct';
+              break;
+            case 'D':
+              part.cssKeyD = 'correct';
+              break;
+          }
+        } else {
+          //set css when false
+          switch (part.Answer) {
+            case 'A':
+              part.cssKeyA = 'correct';
+              break;
+            case 'B':
+              part.cssKeyB = 'correct';
+              break;
+            case 'C':
+              part.cssKeyC = 'correct';
+              break;
+            case 'D':
+              part.cssKeyD = 'correct';
+              break;
+          }
+          switch (part.keyChoose) {
+            case 'A':
+              part.cssKeyA = 'wrong';
+              break;
+            case 'B':
+              part.cssKeyB = 'wrong';
+              break;
+            case 'C':
+              part.cssKeyC = 'wrong';
+              break;
+            case 'D':
+              part.cssKeyD = 'wrong';
+              break;
+          }
         }
-      } else {
-        //set css when false
-        switch (part.Answer) {
-          case 'A':
-            part.cssKeyA = 'correct';
-            break;
-          case 'B':
-            part.cssKeyB = 'correct';
-            break;
-          case 'C':
-            part.cssKeyC = 'correct';
-            break;
-          case 'D':
-            part.cssKeyD = 'correct';
-            break;
-        }
-        switch (part.keyChoose) {
-          case 'A':
-            part.cssKeyA = 'wrong';
-            break;
-          case 'B':
-            part.cssKeyB = 'wrong';
-            break;
-          case 'C':
-            part.cssKeyC = 'wrong';
-            break;
-          case 'D':
-            part.cssKeyD = 'wrong';
-            break;
-        }
-      }
-    });
-    this.showPoint = true;
+        part.isChoosen = false;
+      });
+      this.showPoint = true;
+    }
+  }
 
+  isAllQuestionWasChoosen(): boolean {
+    for (let i = 0; i < this.part5QuestionsArray.length; i++) {
+      if (!this.part5QuestionsArray[i].isChoosen)
+        return false;
+    }
+    return true;
   }
 
   choose(index, key) {
+    this.part5QuestionsArray[index].isChoosen = true;
     this.part5QuestionsArray[index].keyChoose = key;
     switch (key) {
       case 'A':
@@ -163,7 +177,8 @@ export class PracticePart5 {
               cssKeyB: '',
               cssKeyC: '',
               cssKeyD: '',
-              keyChoose: ''
+              keyChoose: '',
+              isChoosen: false
             }
             this.part5QuestionsArray.push(question);
           } // end for loop get question in part5
