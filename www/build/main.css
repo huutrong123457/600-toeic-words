@@ -24547,26 +24547,9 @@ page-home .card-title {
   margin: 0px;
 }
 
-page-practice-part1 .container {
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-
 page-practice-part1 img {
   width: 100%;
   height: 200px;
-}
-
-page-practice-part1 .point {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 10px;
-  font-style: italic;
-  font-size: 1.2em;
-  font-weight: bold;
-  color: red;
-  background-color: #B2DFDB;
 }
 
 page-practice-part1 p {
@@ -24578,6 +24561,23 @@ page-practice-part1 p {
 
 page-practice-part1 ion-item {
   padding-left: 0px !important;
+}
+
+page-practice-part1 .container {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+page-practice-part1 .point {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-style: italic;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: red;
+  background-color: #B2DFDB;
 }
 
 page-practice-part1 .correct {
