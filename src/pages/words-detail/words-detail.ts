@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { NavController, NavParams, LoadingController, Platform, Slides } from 'ionic-angular';
 
 import { Word } from '../../models/word';
@@ -9,7 +9,7 @@ import { NativeAudio } from '@ionic-native/native-audio';
   selector: 'page-words-detail',
   templateUrl: 'words-detail.html',
 })
-export class WordsDetail {
+export class WordsDetail implements OnDestroy{
   @ViewChild(Slides) slides: Slides;
 
   selectedWord: Word;
@@ -47,14 +47,21 @@ export class WordsDetail {
 
   }
 
+  ngOnDestroy(): void {
+      for(let i=0; i < this.listWords.length; i++){
+           this.nativeAudio.stop(this.listWords[i].word.trim())
+            .then(() => { console.log('unload audio success: ' + this.listWords[i].word) }, (error) => { console.log(error) });
+      }
+  }
+
   next() {
-    if (this.startIndex == this.index || this.index == this.length - 1) {
+    if ((this.startIndex == this.index && this.startIndex != 0) || this.index == this.length - 1 ) {
       this.startIndex = -1;
       return;
     }
-    this.stop(this.lstKey[this.index]);
+    this.stop(this.lstKey[this.index].trim());
     this.index++;
-    this.play(this.lstKey[this.index]);
+    this.play(this.lstKey[this.index].trim());
   }
 
   pre() {
@@ -62,29 +69,29 @@ export class WordsDetail {
     if (this.index == 0) {
       return;
     }
-    this.stop(this.lstKey[this.index]);
+    this.stop(this.lstKey[this.index].trim());
     this.index--;
-    this.play(this.lstKey[this.index]);
+    this.play(this.lstKey[this.index].trim());
   }
 
   playAudioClickHandler(word) {
-    this.play(word.word);
+    this.play(word.word.trim());
   }
 
   //play sound
   play(id: string) {
-    this.nativeAudio.play(id)
+    this.nativeAudio.play(id.trim())
       .then(() => { console.log('success') }, (error) => { console.log(error) });
   }
 
   stop(id: string) {
-    this.nativeAudio.stop(id)
+    this.nativeAudio.stop(id.trim())
       .then(() => { console.log('stop success') }, (error) => { console.log(error) });
   }
 
   //get sound in temp memory
   prepareAudio(id: string, asset: string) {
-    this.nativeAudio.preloadComplex(id, asset, 1, 1, 0)
+    this.nativeAudio.preloadComplex(id.trim(), asset, 1, 1, 0)
       .then(() => { }, (error) => { console.log(error) });
   }
 
@@ -125,7 +132,7 @@ export class WordsDetail {
               families: []
             }
             this.lstKey.push(wordTemp.word);
-            this.prepareAudio(wordTemp.word, 'assets/audio/words/' + wordTemp.linkAudio + '.mp3');
+            this.prepareAudio(wordTemp.word.trim(), 'assets/audio/words/' + wordTemp.linkAudio + '.mp3');
             this.getWordExamplesData(wordTemp);
             this.getWordsFamiliesData(wordTemp);
             // Push word completed to array words
@@ -139,7 +146,7 @@ export class WordsDetail {
           setTimeout(() => {
             this.slides.slideTo(this.index);
 
-            this.play(this.lstKey[this.index]);
+            this.play(this.lstKey[this.index].trim());
           }, 100);
         }
         else { // when data is empty
