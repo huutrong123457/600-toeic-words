@@ -15,13 +15,13 @@
                 <h1>{{currentQuestion.keyword.word}} ({{currentQuestion.keyword.type}})</h1>
             </div>
             <div class="row question-game" (click)="choose(1)">
-                {{currentQuestion.keyword.meaning}}
-            </div>
-            <div class="row question-game" (click)="choose(2)">
                 {{currentQuestion.word1.meaning}}
             </div>
-            <div class="row question-game" (click)="choose(3)">
+            <div class="row question-game" (click)="choose(2)">
                 {{currentQuestion.word2.meaning}}
+            </div>
+            <div class="row question-game" (click)="choose(3)">
+                {{currentQuestion.word3.meaning}}
             </div>
         </div>
         <div *ngIf="istem" [@enterAnimation]="istem">

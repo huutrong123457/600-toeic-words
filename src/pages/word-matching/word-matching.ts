@@ -1,7 +1,9 @@
-import { Component, trigger,
+import {
+  Component, trigger,
   style,
   transition,
-  animate } from '@angular/core';
+  animate
+} from '@angular/core';
 import { NavController, NavParams, LoadingController, Platform } from 'ionic-angular';
 import { SQLite } from 'ionic-native';
 
@@ -16,12 +18,12 @@ import { Lesson } from '../../models/lesson';
     trigger(
       'enterAnimation', [
         transition(':enter', [
-          style({transform: 'translateY(100%)', opacity: 0}),
-          animate('500ms', style({transform: 'translateX(0)', opacity: 1}))
+          style({ transform: 'translateY(100%)', opacity: 0 }),
+          animate('500ms', style({ transform: 'translateX(0)', opacity: 1 }))
         ]),
         transition(':leave', [
-          style({transform: 'translateY(0)', opacity: 1}),
-          animate('500ms', style({transform: 'translateX(100%)', opacity: 0}))
+          style({ transform: 'translateY(0)', opacity: 1 }),
+          animate('500ms', style({ transform: 'translateX(100%)', opacity: 0 }))
         ])
       ]
     )
@@ -39,11 +41,11 @@ export class WordMatchingPage {
 
   selectedLesson: Lesson;
 
-  time : number = 3;
+  time: number = 3;
   progressPercent = 100;
   isFlashLoading = true;
   isFalseOrTimeOut = true;
-  istem =false;
+  istem = false;
   isCanTap = false;
   isRunTimer = false;
   key: number = 1;
@@ -78,67 +80,68 @@ export class WordMatchingPage {
   }
 
   ionViewDidLoad() {
-      var i = 0;
-      var intervar = setInterval(() => {
-        i = i+1000;
-        if(i > 2000){
-          clearInterval(intervar);
-          console.log(this.questions[this.currentIndexQuestion]);
-          this.currentQuestion = this.questions[this.currentIndexQuestion];
-          this.isFalseOrTimeOut = false;
-          this.isFlashLoading = false;
-          this.isRunTimer = true;
-          this.runTimer();
-        }
-        this.time = this.time - 1;
-        }, 1000);
+    var i = 0;
+    var intervar = setInterval(() => {
+      i = i + 1000;
+      if (i > 2000) {
+        clearInterval(intervar);
+        console.log(this.questions[this.currentIndexQuestion]);
+        this.currentQuestion = this.questions[this.currentIndexQuestion];
+        this.isFalseOrTimeOut = false;
+        this.isFlashLoading = false;
+        this.isRunTimer = true;
+        this.runTimer();
+      }
+      this.time = this.time - 1;
+    }, 1000);
   }
 
-  runTimer(){
-  var i = 0;
-  var timer = setInterval(()=>{
-    i = i+50;
-    this.progressPercent = this.progressPercent - 1;
-    if(this.selectedAnswer == this.key){
-      //change data
-      i = 0;
-      this.currentIndexQuestion++;
-      if(this.currentIndexQuestion < this.questions.length)
-        this.currentQuestion = this.questions[this.currentIndexQuestion];
-      this.progressPercent = 100;
-      this.selectedAnswer = 0;
-    }
-    if(this.selectedAnswer != this.key&&this.selectedAnswer != 0){
-      clearInterval(timer);
-      this.isFalseOrTimeOut = true;
-      this.istem = true;
-      this.isRunTimer = false;
-      this.isCanTap = true;
-      this.selectedAnswer = 0;
-      this.currentIndexQuestion++;
-    }
-    if(i == 5000){
-      clearInterval(timer);
-      this.isFalseOrTimeOut = true;
-      this.istem = true;
-      this.isRunTimer = false;
-      this.isCanTap = true;
-      this.currentIndexQuestion++;
-    }},50);
+  runTimer() {
+    var i = 0;
+    var timer = setInterval(() => {
+      i = i + 50;
+      this.progressPercent = this.progressPercent - 1;
+      if (this.selectedAnswer == this.currentQuestion.indexKey) {
+        //change data
+        i = 0;
+        this.currentIndexQuestion++;
+        if (this.currentIndexQuestion < this.questions.length)
+          this.currentQuestion = this.questions[this.currentIndexQuestion];
+        this.progressPercent = 100;
+        this.selectedAnswer = 0;
+      }
+      if (this.selectedAnswer != this.key && this.selectedAnswer != 0) {
+        clearInterval(timer);
+        this.isFalseOrTimeOut = true;
+        this.istem = true;
+        this.isRunTimer = false;
+        this.isCanTap = true;
+        this.selectedAnswer = 0;
+        this.currentIndexQuestion++;
+      }
+      if (i == 5000) {
+        clearInterval(timer);
+        this.isFalseOrTimeOut = true;
+        this.istem = true;
+        this.isRunTimer = false;
+        this.isCanTap = true;
+        this.currentIndexQuestion++;
+      }
+    }, 50);
   }
-  choose(a){
+  choose(a) {
     this.selectedAnswer = a;
     console.log(a);
   }
-  tapEvent(e){
-    if(this.isCanTap){
+  tapEvent(e) {
+    if (this.isCanTap) {
       this.isCanTap = false;
       this.isRunTimer = true;
       this.progressPercent = 100;
       this.isFalseOrTimeOut = false;
       this.isFlashLoading = false;
       this.istem = false;
-      if(this.currentIndexQuestion < this.questions.length)
+      if (this.currentIndexQuestion < this.questions.length)
         this.currentQuestion = this.questions[this.currentIndexQuestion];
       this.runTimer();
     }
@@ -197,6 +200,7 @@ export class WordMatchingPage {
       let currentIndex = i;
       let indexWord1 = currentIndex;
       let indexWord2;
+      let indexWord3;
 
       while (indexWord1 == currentIndex) {
         indexWord1 = this.createRandomNumber(0, 11);
@@ -207,16 +211,31 @@ export class WordMatchingPage {
         indexWord2 = this.createRandomNumber(0, 11);
       }
 
+      indexWord3 = indexWord2;
+      while (indexWord3 == currentIndex || indexWord3 == indexWord1 || indexWord3 == indexWord2) {
+        indexWord3 = this.createRandomNumber(0, 11);
+      }
+
       let question: QuestionGame = {
         keyword: this.words[currentIndex],
         word1: this.words[indexWord1],
         word2: this.words[indexWord2],
-        word3: this.words[currentIndex],
+        word3: this.words[indexWord3],
         indexKey: currentIndex
       };
+
+      let answer = this.createRandomNumber(1, 3);;
+      switch (answer) {
+        case 1:
+          question.word1 = question.keyword; question.indexKey = 1; break;
+        case 2:
+          question.word2 = question.keyword; question.indexKey = 2; break;
+        case 3:
+          question.word3 = question.keyword; question.indexKey = 3; break;
+      }
+
       this.questions.push(question);
     }
-
   }
 
   private createRandomNumber(min, max): number {
