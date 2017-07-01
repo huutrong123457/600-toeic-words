@@ -1,12 +1,48 @@
-<ion-header>
+<ion-content (tap)="tapEvent($event)" class="no-scroll" padding style="background-color: #009688">
 
-    <ion-navbar>
-        <ion-title>word-matching {{selectedLesson.lesson}}</ion-title>
-    </ion-navbar>
+    <div class="header" *ngIf="!isFlashLoading" [@enterAnimation]="!isLoading">
+        <div id="left">
+            ❮ Back</div>
+        <div id="right">3 x <span><ion-icon name="heart" style="
+    color: red;"></ion-icon></span></div>
+        <div id="center">Point: 5</div>
+    </div>
+    <ion-grid>
 
-</ion-header>
+        <div *ngIf="!isFalseOrTimeOut" [@enterAnimation]="!isFalseOrTimeOut">
 
+            <div>
+                <h1>{{currentQuestion.keyword.word}} ({{currentQuestion.keyword.type}})</h1>
+            </div>
+            <div class="row question-game" (click)="choose(1)">
+                {{currentQuestion.keyword.meaning}}
+            </div>
+            <div class="row question-game" (click)="choose(2)">
+                {{currentQuestion.word1.meaning}}
+            </div>
+            <div class="row question-game" (click)="choose(3)">
+                {{currentQuestion.word2.meaning}}
+            </div>
+        </div>
+        <div *ngIf="istem" [@enterAnimation]="istem">
+            <div>
+                <h2>Opp! Tap to continue.</h2>
+                <h3>{{currentQuestion.keyword.word}} ({{currentQuestion.keyword.type}})</h3>
+                <p class="meaning">{{currentQuestion.keyword.meaning}}</p>
+                <img class="img" src="{{currentQuestion.keyword.linkImg}}" />
 
-<ion-content padding>
-    <div *ngFor="let question of questions">{{question.keyword.word}} {{question.word1.word}} {{question.word2.word}}</div>
+            </div>
+        </div>
+        <ion-row *ngIf="isFlashLoading">
+            <ion-col text-center>{{time}} </ion-col>
+        </ion-row>
+    </ion-grid>
+
 </ion-content>
+<ion-footer *ngIf="isRunTimer" [@enterAnimation]="isRunTimer">
+    <div class="item item-text-wrap">
+        <div class="loader" [style.width.%]="progressPercent">
+            <p class="percent"></p>
+        </div>
+    </div>
+</ion-footer>

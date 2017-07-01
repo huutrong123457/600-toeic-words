@@ -24961,6 +24961,120 @@ page-practice-part7 .wrong {
   font-weight: bold;
 }
 
+page-word-matching h1 {
+  text-align: center;
+  color: lightyellow;
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+page-word-matching h2 {
+  font-size: 2em;
+  text-align: center;
+  color: yellow;
+}
+
+page-word-matching h3 {
+  font-size: 2em;
+  color: whitesmoke;
+}
+
+page-word-matching .meaning {
+  font-size: 1.5em;
+}
+
+page-word-matching p {
+  color: lightyellow;
+}
+
+page-word-matching img {
+  width: 150px;
+  height: 150px;
+  display: block;
+  margin: 0 auto;
+}
+
+page-word-matching .img {
+  width: 200px;
+  height: 200px;
+  display: block;
+  margin: 0 auto;
+}
+
+page-word-matching .question-game {
+  font-weight: bold;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-size: 1.2em;
+  border-radius: 10px;
+  color: rebeccapurple;
+  background-color: #EE9;
+}
+
+page-word-matching .header {
+  padding: 10px;
+  border: solid 1px lightgrey;
+  border-radius: 10px;
+  background: lightslategray;
+}
+
+page-word-matching ion-grid {
+  height: 100%;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+page-word-matching ion-content {
+  background-color: #0F9;
+}
+
+page-word-matching #left {
+  float: left;
+  width: 33%;
+  font-size: 1.2em;
+  color: whitesmoke;
+  font-weight: bold;
+}
+
+page-word-matching #right {
+  float: right;
+  width: 33%;
+  text-align: right;
+  font-size: 1.2em;
+  color: whitesmoke;
+  font-weight: bold;
+}
+
+page-word-matching #center {
+  text-align: center;
+  margin: 0 auto;
+  width: 33%;
+  font-size: 1.2em;
+  color: whitesmoke;
+  font-weight: bold;
+}
+
+page-word-matching .loader {
+  background: yellow !important;
+  height: 10px;
+}
+
+page-word-matching .loader p {
+  text-align: center;
+  color: white !important;
+  text-align: center;
+}
+
+page-word-matching .footer-md::before {
+  background-image: none;
+}
+
+page-word-matching .no-scroll .scroll-content {
+  overflow: hidden;
+}
+
 page-words-detail .word {
   font-size: 1.75em;
   font-weight: bold;

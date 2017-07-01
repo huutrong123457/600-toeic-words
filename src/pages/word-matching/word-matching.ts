@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, trigger,
+  style,
+  transition,
+  animate } from '@angular/core';
 import { NavController, NavParams, LoadingController, Platform } from 'ionic-angular';
 import { SQLite } from 'ionic-native';
 
@@ -8,7 +11,21 @@ import { Lesson } from '../../models/lesson';
 
 @Component({
   selector: 'page-word-matching',
-  templateUrl: 'word-matching.html'
+  templateUrl: 'word-matching.html',
+  animations: [
+    trigger(
+      'enterAnimation', [
+        transition(':enter', [
+          style({transform: 'translateY(100%)', opacity: 0}),
+          animate('500ms', style({transform: 'translateX(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'translateY(0)', opacity: 1}),
+          animate('500ms', style({transform: 'translateX(100%)', opacity: 0}))
+        ])
+      ]
+    )
+  ]
 })
 
 export class WordMatchingPage {
@@ -21,6 +38,18 @@ export class WordMatchingPage {
   public words: Array<Word>;
 
   selectedLesson: Lesson;
+
+  time : number = 3;
+  progressPercent = 100;
+  isFlashLoading = true;
+  isFalseOrTimeOut = true;
+  istem =false;
+  isCanTap = false;
+  isRunTimer = false;
+  key: number = 1;
+  selectedAnswer: number = 0;
+  currentIndexQuestion: number = 0;
+  currentQuestion: QuestionGame;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -49,7 +78,70 @@ export class WordMatchingPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad WordMatchingPage');
+      var i = 0;
+      var intervar = setInterval(() => {
+        i = i+1000;
+        if(i > 2000){
+          clearInterval(intervar);
+          console.log(this.questions[this.currentIndexQuestion]);
+          this.currentQuestion = this.questions[this.currentIndexQuestion];
+          this.isFalseOrTimeOut = false;
+          this.isFlashLoading = false;
+          this.isRunTimer = true;
+          this.runTimer();
+        }
+        this.time = this.time - 1;
+        }, 1000);
+  }
+
+  runTimer(){
+  var i = 0;
+  var timer = setInterval(()=>{
+    i = i+50;
+    this.progressPercent = this.progressPercent - 1;
+    if(this.selectedAnswer == this.key){
+      //change data
+      i = 0;
+      this.currentIndexQuestion++;
+      if(this.currentIndexQuestion < this.questions.length)
+        this.currentQuestion = this.questions[this.currentIndexQuestion];
+      this.progressPercent = 100;
+      this.selectedAnswer = 0;
+    }
+    if(this.selectedAnswer != this.key&&this.selectedAnswer != 0){
+      clearInterval(timer);
+      this.isFalseOrTimeOut = true;
+      this.istem = true;
+      this.isRunTimer = false;
+      this.isCanTap = true;
+      this.selectedAnswer = 0;
+      this.currentIndexQuestion++;
+    }
+    if(i == 5000){
+      clearInterval(timer);
+      this.isFalseOrTimeOut = true;
+      this.istem = true;
+      this.isRunTimer = false;
+      this.isCanTap = true;
+      this.currentIndexQuestion++;
+    }},50);
+  }
+  choose(a){
+    this.selectedAnswer = a;
+    console.log(a);
+  }
+  tapEvent(e){
+    if(this.isCanTap){
+      this.isCanTap = false;
+      this.isRunTimer = true;
+      this.progressPercent = 100;
+      this.isFalseOrTimeOut = false;
+      this.isFlashLoading = false;
+      this.istem = false;
+      if(this.currentIndexQuestion < this.questions.length)
+        this.currentQuestion = this.questions[this.currentIndexQuestion];
+      this.runTimer();
+    }
   }
 
   // function load data
@@ -118,7 +210,9 @@ export class WordMatchingPage {
       let question: QuestionGame = {
         keyword: this.words[currentIndex],
         word1: this.words[indexWord1],
-        word2: this.words[indexWord2]
+        word2: this.words[indexWord2],
+        word3: this.words[currentIndex],
+        indexKey: currentIndex
       };
       this.questions.push(question);
     }
