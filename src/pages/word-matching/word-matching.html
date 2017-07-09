@@ -1,13 +1,20 @@
 <ion-content (tap)="tapEvent($event)" class="no-scroll" padding style="background-color: #009688">
 
-    <div class="header" *ngIf="!isFlashLoading" [@enterAnimation]="!isLoading">
-        <div id="left">
+    <div class="header" *ngIf="!isShowHeader" [@enterAnimation]="!isLoading">
+        <div id="left" (click)="back()">
             ❮ Back</div>
-        <div id="right">3 x <span><ion-icon name="heart" style="
+        <div id="right">{{life}} x <span><ion-icon name="heart" style="
     color: red;"></ion-icon></span></div>
-        <div id="center">Point: 5</div>
+        <div id="center">Point: {{point}}</div>
     </div>
+
     <ion-grid>
+        <div class="result" *ngIf="isEndGame">
+            <div class="header-end">YOUR POINT</div>
+            <div class="end-point">{{point}}/{{lengthQuestion}}</div>
+            <button ion-button block (click)="playAgain()">Play Again</button>
+            <button ion-button block (click)="back()">Exit</button>
+        </div>
 
         <div *ngIf="!isFalseOrTimeOut" [@enterAnimation]="!isFalseOrTimeOut">
 
@@ -34,7 +41,7 @@
             </div>
         </div>
         <ion-row *ngIf="isFlashLoading">
-            <ion-col text-center>{{time}} </ion-col>
+            <ion-col text-center class="timer">{{time}} </ion-col>
         </ion-row>
     </ion-grid>
 

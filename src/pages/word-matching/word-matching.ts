@@ -2,10 +2,11 @@ import {
   Component, trigger,
   style,
   transition,
-  animate
+  animate, OnDestroy
 } from '@angular/core';
 import { NavController, NavParams, LoadingController, Platform } from 'ionic-angular';
 import { SQLite } from 'ionic-native';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 import { Word } from '../../models/word';
 import { QuestionGame } from '../../models/question-game';
@@ -30,7 +31,14 @@ import { Lesson } from '../../models/lesson';
   ]
 })
 
-export class WordMatchingPage {
+export class WordMatchingPage implements OnDestroy{
+  
+  ngOnDestroy(): void {
+    this.nativeAudio.stop("backgroundMusic");
+    this.nativeAudio.unload("backgroundMusic");
+    this.nativeAudio.unload("correct");
+    this.nativeAudio.unload("wrong");
+  }
 
   // object connect to db
   public database: SQLite;
@@ -48,15 +56,21 @@ export class WordMatchingPage {
   istem = false;
   isCanTap = false;
   isRunTimer = false;
+  isShowHeader = true;
+  isEndGame = false;
   key: number = 1;
   selectedAnswer: number = 0;
   currentIndexQuestion: number = 0;
+  lengthQuestion: number = 0;
   currentQuestion: QuestionGame;
+
+  point: number = 0;
+  life: number = 5;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
-    public platform: Platform) {
+    public platform: Platform, private nativeAudio: NativeAudio) {
     // get selected lesson from homePage
     this.selectedLesson = navParams.data;
     // create object sqlite
@@ -79,7 +93,31 @@ export class WordMatchingPage {
     );
   }
 
+  preloadBackgroundMusic(){
+    this.nativeAudio.preloadComplex("backgroundMusic","assets/audio/background-sound.mp3",1,1,0);
+  }
+
+  preloadCorrectWrongSound(){
+    this.nativeAudio.preloadSimple("correct","assets/audio/correct-sound-effect.mp3");
+    this.nativeAudio.preloadSimple("wrong","assets/audio/wrong-sound-effect.mp3");
+  }
+
+  playBackgroundMusic(){
+    this.nativeAudio.loop("backgroundMusic");
+  }
+
+  playSoundCorrect(){
+    this.nativeAudio.play("correct");
+  }
+
+  playSoundWrong(){
+    this.nativeAudio.play("wrong");
+  }
+
   ionViewDidLoad() {
+   
+    this.preloadBackgroundMusic();
+    this.preloadCorrectWrongSound();
     var i = 0;
     var intervar = setInterval(() => {
       i = i + 1000;
@@ -89,7 +127,9 @@ export class WordMatchingPage {
         this.currentQuestion = this.questions[this.currentIndexQuestion];
         this.isFalseOrTimeOut = false;
         this.isFlashLoading = false;
+        this.isShowHeader = false;
         this.isRunTimer = true;
+        this.nativeAudio.loop("backgroundMusic");
         this.runTimer();
       }
       this.time = this.time - 1;
@@ -104,14 +144,23 @@ export class WordMatchingPage {
       if (this.selectedAnswer == this.currentQuestion.indexKey) {
         //change data
         i = 0;
+        this.nativeAudio.play("correct");
+        this.point++;
         this.currentIndexQuestion++;
-        if (this.currentIndexQuestion < this.questions.length)
-          this.currentQuestion = this.questions[this.currentIndexQuestion];
+        if (this.currentIndexQuestion == this.questions.length)
+        {
+          clearInterval(timer);
+          this.setEnGame();
+          return;
+        }
+        this.currentQuestion = this.questions[this.currentIndexQuestion];
         this.progressPercent = 100;
         this.selectedAnswer = 0;
       }
-      if (this.selectedAnswer != this.key && this.selectedAnswer != 0) {
+      if (this.selectedAnswer != this.currentQuestion.indexKey && this.selectedAnswer != 0) {
         clearInterval(timer);
+        this.nativeAudio.play("wrong");
+        this.life--;
         this.isFalseOrTimeOut = true;
         this.istem = true;
         this.isRunTimer = false;
@@ -121,6 +170,8 @@ export class WordMatchingPage {
       }
       if (i == 5000) {
         clearInterval(timer);
+        this.nativeAudio.play("wrong");
+        this.life--;
         this.isFalseOrTimeOut = true;
         this.istem = true;
         this.isRunTimer = false;
@@ -130,8 +181,21 @@ export class WordMatchingPage {
     }, 50);
   }
   choose(a) {
-    this.selectedAnswer = a;
-    console.log(a);
+    if (!this.isCanTap){
+      this.selectedAnswer = a;
+      console.log(a);
+    }
+    
+  }
+  setEnGame(){ 
+    this.isCanTap = false;
+    this.lengthQuestion = this.questions.length;
+    this.isFlashLoading = false;
+    this.isShowHeader = true;
+    this.isFalseOrTimeOut = true;
+    this.istem = false;
+    this.isRunTimer = false;
+    this.isEndGame = true;
   }
   tapEvent(e) {
     if (this.isCanTap) {
@@ -141,10 +205,37 @@ export class WordMatchingPage {
       this.isFalseOrTimeOut = false;
       this.isFlashLoading = false;
       this.istem = false;
-      if (this.currentIndexQuestion < this.questions.length)
-        this.currentQuestion = this.questions[this.currentIndexQuestion];
+      if (this.currentIndexQuestion == this.questions.length || this.life == 0)
+      {
+        this.setEnGame();
+        return;
+      }
+      this.currentQuestion = this.questions[this.currentIndexQuestion];
       this.runTimer();
     }
+  }
+
+  playAgain(){
+    this.selectedAnswer = 0;
+    this.isEndGame = false;
+    this.currentIndexQuestion = 0;
+    this.currentQuestion = this.questions[this.currentIndexQuestion];
+    this.point = 0;
+    this.life = 5;
+    this.isCanTap = false;
+    this.isShowHeader = false;
+    this.isRunTimer = true;
+    this.progressPercent = 100;
+    this.isFalseOrTimeOut = false;
+    this.isFlashLoading = false;
+    this.istem = false;
+    this.runTimer();
+  }
+
+  back(){
+
+    this.navCtrl.pop();
+
   }
 
   // function load data

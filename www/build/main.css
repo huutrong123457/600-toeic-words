@@ -25075,6 +25075,32 @@ page-word-matching .no-scroll .scroll-content {
   overflow: hidden;
 }
 
+page-word-matching .end-point {
+  text-align: center;
+  font-size: 7em;
+  color: yellowgreen;
+}
+
+page-word-matching .header-end {
+  text-align: center;
+  color: gainsboro;
+  font-size: 3em;
+}
+
+page-word-matching .button-block-md {
+  padding: 30px;
+  background-color: lightseagreen;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+page-word-matching .timer {
+  font-size: 10em;
+  font-weight: bold;
+  color: chartreuse;
+}
+
 page-words-detail .word {
   font-size: 1.75em;
   font-weight: bold;
