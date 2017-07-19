@@ -25101,6 +25101,14 @@ page-word-matching .timer {
   color: chartreuse;
 }
 
+page-word-matching .tap-class {
+  padding: 30px;
+  background-color: yellowgreen;
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
 page-words-detail .word {
   font-size: 1.75em;
   font-weight: bold;

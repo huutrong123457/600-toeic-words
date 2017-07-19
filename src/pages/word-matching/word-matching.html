@@ -1,4 +1,4 @@
-<ion-content (tap)="tapEvent($event)" class="no-scroll" padding style="background-color: #009688">
+<ion-content class="no-scroll" padding style="background-color: #009688">
 
     <div class="header" *ngIf="!isShowHeader" [@enterAnimation]="!isLoading">
         <div id="left" (click)="back()">
@@ -33,11 +33,11 @@
         </div>
         <div *ngIf="istem" [@enterAnimation]="istem">
             <div>
-                <h2>Opp! Tap to continue.</h2>
+                <h2>Opp! Wrong answer.</h2>
                 <h3>{{currentQuestion.keyword.word}} ({{currentQuestion.keyword.type}})</h3>
                 <p class="meaning">{{currentQuestion.keyword.meaning}}</p>
                 <img class="img" src="{{currentQuestion.keyword.linkImg}}" />
-
+                <button ion-button block class="tap-class" (click)="tapEvent($event)">Click here to continue!</button>
             </div>
         </div>
         <ion-row *ngIf="isFlashLoading">
